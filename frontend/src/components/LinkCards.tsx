@@ -5,35 +5,34 @@ import { format, isValid } from 'date-fns'
 import { es } from 'date-fns/locale'
 import { IconButton } from "./ui/IconButton";
 import { useState } from "react";
+import { useCopyToClipboard } from "./useCopyToClipboard";
 
 
 export const LinkCards = () => {
   const { user } = useAuth()
+  const { CopyToClipboard } = useCopyToClipboard()
   const [isOpen, setIsOpen] = useState(false)
 
-  // const handleDelete = ({ id }) => {
-  //   onDelete(id)
-  //   toast({
-  //     title: "URL eliminada",
-  //     description: "La URL acortada ha sido eliminada.",
-  //   })
-  // }
+  const handleCopy = async (shortenedUrl: string) => {
+    const success = await CopyToClipboard(shortenedUrl)
 
+    return success
+  }
 
   return (
     <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-3">
-      {user?.urls?.map(({ slug, url, description, created_at }, index) => {
+      {user?.urls?.map(({ slug, url, description, created_at }) => {
 
         return (
-          <div key={index} className="w-full max-w-md border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
+          <div key={slug} className="w-full max-w-md border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
 
             <div className="p-4">
 
               <div className="flex items-center justify-between">
-                <span className="text-lg font-semibold truncate">{FRONTEND_URL}/{slug}</span>
+                <span className="text-lg font-semibold truncate">https://www.example.com/{slug}</span>
 
-                <div className="flex">
-                  <IconButton variant="ghost" size="icon">
+                <div className="flex ml-2">
+                  <IconButton onClick={() => handleCopy(`${FRONTEND_URL}/${slug}`)} variant="ghost" size="icon">
                     <Copy className="w-4 h-4" />
                     <span className="sr-only">Copy URL</span>
                   </IconButton>

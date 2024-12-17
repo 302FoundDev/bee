@@ -23,7 +23,7 @@ export const IconButton = ({ variant, size, children, ...props }: IconButtonProp
   }
 
   const sizes = {
-    icon: 'h-8 w-8',
+    icon: 'h-6 w-6',
   }
 
   return (
