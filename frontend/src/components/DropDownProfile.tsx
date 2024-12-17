@@ -47,12 +47,10 @@ export const DropDownProfile = () => {
     <>
       {session ? (
         <div className="relative flex">
-          {/* Botón de perfil */}
           <button className="relative z-10" onClick={openDrop}>
             <FaUserCircle className="size-7" />
           </button>
 
-          {/* Cerrar el dropdown al hacer clic fuera */}
           {isDropOpen && (
             <div
               onClick={closeDrop}
@@ -86,7 +84,6 @@ export const DropDownProfile = () => {
                 </Link>
               ))}
 
-              {/* Botón de cerrar sesión */}
               <button
                 onClick={handleSignOut}
                 className={`${menuItemStyle} w-full`}
