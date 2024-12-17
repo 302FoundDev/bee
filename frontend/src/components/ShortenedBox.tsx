@@ -23,6 +23,8 @@ export const Links = () => {
   const createLink = 'Create link'
   const createNewSlug = 'Create new slug'
 
+  console.log(isLoading)
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center">

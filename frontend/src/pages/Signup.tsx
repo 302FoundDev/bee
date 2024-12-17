@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 
 export const Signup = () => {
-  const { isAuthenticated, signup } = useAuth()
+  const { session, signup } = useAuth()
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -18,9 +18,11 @@ export const Signup = () => {
     await signup({ full_name, email, password })
   }
 
-  if (isAuthenticated) {
+  if (session) {
     return <Navigate to="/dashboard" />
   }
+
+  const commonStyles = "block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 
   return (
     <section>
@@ -32,20 +34,20 @@ export const Signup = () => {
       >
         <Link
           to="/"
-          className="flex items-center mb-6 text-3xl text-gray-900 transition ease-linear hover:opacity-70 dark:text-white"
+          className="flex items-center mb-6 text-3xl transition ease-linear text-neutral-900 hover:opacity-70 dark:text-white"
         >
           <img className="size-12" src="/bee.svg" alt="logo" />
         </Link>
         <div className="w-full lg:w-[600px] md:w-[600px] bg-transparent border rounded-xl shadow border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-neutral-900 dark:text-white">
               Create an account
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
                   Full name
                 </label>
@@ -53,7 +55,7 @@ export const Signup = () => {
                   type="text"
                   name="full_name"
                   id="name"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className={commonStyles}
                   placeholder="Full name"
                   required
                 />
@@ -61,7 +63,7 @@ export const Signup = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
                   Your email
                 </label>
@@ -69,7 +71,7 @@ export const Signup = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className={commonStyles}
                   placeholder="name@company.com"
                   required
                 />
@@ -77,7 +79,7 @@ export const Signup = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
                   Password
                 </label>
@@ -86,14 +88,14 @@ export const Signup = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className={commonStyles}
                   required
                 />
               </div>
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
                   Confirm password
                 </label>
@@ -102,22 +104,22 @@ export const Signup = () => {
                   name="confirmPassword"
                   id="confirmPassword"
                   placeholder="••••••••"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className={commonStyles}
                   required
                 />
               </div>
-              <div>
+              <div className="flex items-center space-x-2">
                 <div>
                   <input type="checkbox"
                     id="terms"
                     name="terms"
-                    className="w-4 border border-gray-300 rounded h-14 bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    className="w-4 bg-transparent border rounded border-neutral-200 h-14 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-neutral-800 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="terms"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                   >
                     I agree to the{" "}
                     <a
@@ -133,7 +135,7 @@ export const Signup = () => {
                 Create your account
               </Button>
 
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-transparent0 dark:text-gray-400">
                 Already have an account?{" "}
                 <Link
                   to="/signin"

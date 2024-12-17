@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 export const Signin = () => {
   const { signin } = useAuth()
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
@@ -35,20 +35,20 @@ export const Signin = () => {
       >
         <Link
           to="/"
-          className="flex items-center mb-6 text-3xl font-semibold text-gray-900 transition ease-linear hover:opacity-70 dark:text-white"
+          className="flex items-center mb-6 text-3xl font-semibold transition ease-linear text-neutral-900 hover:opacity-70 dark:text-neutral-100"
         >
           <img className="size-12" src="/bee.svg" alt="logo" />
         </Link>
         <div className="w-full bg-transparent border rounded-xl shadow lg:w-[600px] md:w-[600px] border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white">
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-neutral-900 lg:text-2xl dark:text-neutral-100">
               Welcome back again! 🎉
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-100"
                 >
                   Your email
                 </label>
@@ -56,7 +56,7 @@ export const Signin = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-neutral-100 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required
                 />
@@ -64,7 +64,7 @@ export const Signin = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-100"
                 >
                   Password
                 </label>
@@ -73,7 +73,7 @@ export const Signin = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="block w-full px-3 py-1.5 text-gray-900 border border-gray-300 rounded-md bg-gray-50 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-neutral-100 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
