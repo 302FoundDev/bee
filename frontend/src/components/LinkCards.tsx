@@ -5,29 +5,11 @@ import { format, isValid } from 'date-fns'
 import { es } from 'date-fns/locale'
 import { IconButton } from "./ui/IconButton";
 import { useState } from "react";
-import { redirect } from "react-router-dom";
 
 
 export const LinkCards = () => {
   const { user } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
-
-  // const copyToClipboard = async () => {
-  //   try {
-  //     await navigator.clipboard.writeText(shortUrl)
-  //     toast({
-  //       title: "URL copiada",
-  //       description: "La URL acortada ha sido copiada al portapapeles.",
-  //     })
-  //   } catch (err) {
-  //     console.error('Error al copiar al portapapeles:', err)
-  //     toast({
-  //       title: "Error",
-  //       description: "No se pudo copiar la URL al portapapeles.",
-  //       variant: "destructive",
-  //     })
-  //   }
-  // }
 
   // const handleDelete = ({ id }) => {
   //   onDelete(id)
@@ -36,14 +18,6 @@ export const LinkCards = () => {
   //     description: "La URL acortada ha sido eliminada.",
   //   })
   // }
-
-  const innerCard = [
-    {
-      title: 'Original URL',
-      description: 'https://www.example.com',
-      redirect: `${FRONTEND_URL}/example-slug`,
-    },
-  ]
 
 
   return (
@@ -91,7 +65,8 @@ export const LinkCards = () => {
               </IconButton>
             </div>
 
-            <div className={`p-4 space-y-2 bg-transparent transition-all duration-300 ease-in-out overflow-hidden ${isOpen} ? 'max-h-96' : 'max-h-0'}`}>
+            <div className={`p-4 space-y-2 bg-transparent transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+
               <div>
                 <h3 className="text-sm font-medium">Original URL:</h3>
                 <p className="text-sm break-all text-zinc-600 dark:text-neutral-400">{url}</p>
@@ -117,6 +92,7 @@ export const LinkCards = () => {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">{description || 'No description available'}</p>
               </div>
             </div>
+
 
             <div className="flex items-center p-4 text-sm text-gray-600 dark:text-gray-400">
               Click the copy button to use this shortened URL.
