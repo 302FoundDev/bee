@@ -1,17 +1,15 @@
 import { useAuth } from "../context/AuthContext";
 import { FRONTEND_URL } from "../config"
-import { ChevronDown, ChevronUp, Copy, Trash2, ExternalLink } from 'lucide-react'
+import { Copy, Trash2, ExternalLink } from 'lucide-react'
 import { format, isValid } from 'date-fns'
 import { es } from 'date-fns/locale'
 import { IconButton } from "./ui/IconButton";
-import { useState } from "react";
 import { useCopyToClipboard } from "./useCopyToClipboard";
 
 
 export const LinkCards = () => {
   const { user } = useAuth()
   const { CopyToClipboard } = useCopyToClipboard()
-  const [isOpen, setIsOpen] = useState(false)
 
   const handleCopy = async (shortenedUrl: string) => {
     const success = await CopyToClipboard(shortenedUrl)
@@ -21,12 +19,12 @@ export const LinkCards = () => {
 
   return (
     <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-3">
-      {user?.urls?.map(({ slug, url, description, created_at }) => {
+      {user?.urls?.map(({ slug, url, description, created_at }, index) => {
 
         return (
-          <div key={slug} className="w-full max-w-md border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
+          <div key={index} className="w-full max-w-lg p-4 border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
 
-            <div className="p-4">
+            <div>
 
               <div className="flex items-center justify-between">
                 <span className="text-lg font-semibold truncate">https://www.example.com/{slug}</span>
@@ -51,20 +49,7 @@ export const LinkCards = () => {
             </div>
 
 
-            <div className="mt-2 border-t border-zinc-800 dark:border-gray-400" >
-              <IconButton
-                variant="ghost"
-                size="icon"
-                className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium transition-colors rounded-sm dark:hover:bg-neutral-800 hover:bg-zinc-200"
-                onClick={() => { setIsOpen(!isOpen) }}
-              >
-                {isOpen ? 'Hide description' : 'Show description'}
-                {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                <span className="sr-only">Toggle description</span>
-              </IconButton>
-            </div>
-
-            <div className={`p-4 space-y-2 bg-transparent transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+            <div className='mt-5 space-y-3 overflow-hidden transition-all duration-300 ease-in-out bg-transparent'>
 
               <div>
                 <h3 className="text-sm font-medium">Original URL:</h3>
@@ -90,11 +75,6 @@ export const LinkCards = () => {
                 <h3 className="text-sm font-medium">Description:</h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">{description || 'No description available'}</p>
               </div>
-            </div>
-
-
-            <div className="flex items-center p-4 text-sm text-gray-600 dark:text-gray-400">
-              Click the copy button to use this shortened URL.
             </div>
 
           </div>
