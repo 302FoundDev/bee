@@ -11,7 +11,5 @@
       "src": "/.*",
       "dest": "/dist/main.js"
     }
-  ],
-  "outputDirectory": "dist",
-  "public": "public"
+  ]
 }
