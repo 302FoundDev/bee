@@ -3,8 +3,9 @@ import { FRONTEND_URL } from "../config"
 import { ChevronDown, ChevronUp, Copy, Trash2, ExternalLink } from 'lucide-react'
 import { format, isValid } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { Button } from "./ui/Button";
+import { IconButton } from "./ui/IconButton";
 import { useState } from "react";
+import { redirect } from "react-router-dom";
 
 
 export const LinkCards = () => {
@@ -36,27 +37,36 @@ export const LinkCards = () => {
   //   })
   // }
 
+  const innerCard = [
+    {
+      title: 'Original URL',
+      description: 'https://www.example.com',
+      redirect: `${FRONTEND_URL}/example-slug`,
+    },
+  ]
+
+
   return (
     <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-3">
       {user?.urls?.map(({ slug, url, description, created_at }, index) => {
 
         return (
-          <div key={index} className="w-full max-w-md border rounded-md border-zinc-800">
+          <div key={index} className="w-full max-w-md border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
 
             <div className="p-4">
 
               <div className="flex items-center justify-between">
                 <span className="text-lg font-semibold truncate">{FRONTEND_URL}/{slug}</span>
 
-                <div className="flex space-x-1">
-                  <Button variant="ghost" size="icon">
+                <div className="flex">
+                  <IconButton variant="ghost" size="icon">
                     <Copy className="w-4 h-4" />
                     <span className="sr-only">Copy URL</span>
-                  </Button>
-                  <Button variant="ghost" size="icon">
+                  </IconButton>
+                  <IconButton variant="ghost" size="icon">
                     <Trash2 className="w-4 h-4" />
                     <span className="sr-only">Delete URL</span>
-                  </Button>
+                  </IconButton>
                 </div>
               </div>
 
@@ -69,15 +79,16 @@ export const LinkCards = () => {
 
 
             <div className="mt-2 border-t border-zinc-800 dark:border-gray-400" >
-              <Button
+              <IconButton
                 variant="ghost"
-                className="flex items-center justify-between w-full py-3 text-sm font-medium transition-colors rounded-sm dark:hover:bg-neutral-800 hover:bg-zinc-200"
+                size="icon"
+                className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium transition-colors rounded-sm dark:hover:bg-neutral-800 hover:bg-zinc-200"
                 onClick={() => { setIsOpen(!isOpen) }}
               >
                 {isOpen ? 'Hide description' : 'Show description'}
                 {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 <span className="sr-only">Toggle description</span>
-              </Button>
+              </IconButton>
             </div>
 
             <div className={`p-4 space-y-2 bg-transparent transition-all duration-300 ease-in-out overflow-hidden ${isOpen} ? 'max-h-96' : 'max-h-0'}`}>

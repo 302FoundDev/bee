@@ -42,18 +42,13 @@ export const Links = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "linear" }}
         >
-          <div className="flex items-start justify-between w-full">
-            <h1 className="text-xl font-semibold">
-              Welcome, <span className="bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-purple-600">{user?.full_name}</span>
-            </h1>
+          <div className="flex items-start justify-between w-full mb-8">
+
+            <InputSearch placeholder="Search slug" onSearch={handleSearch} />
 
             <div>
               <CreateSlugModal children={createLink} />
             </div>
-          </div>
-
-          <div>
-            <InputSearch placeholder="Search slug" onSearch={handleSearch} />
           </div>
 
           {
@@ -73,10 +68,7 @@ export const Links = () => {
                 </div>
               </div>
             ) : (
-
               <LinkCards />
-
-
             )
           }
 
