@@ -31,7 +31,7 @@ export const Hero = () => {
 
         <article className="mx-auto mt-10">
           <a
-            href="https://github.com/302FoundDev/bee-frontend"
+            href="https://github.com/302FoundDev/bee/tree/main/frontend"
             rel="noopener"
             target="_blank"
             className="flex items-center justify-center w-full gap-2 py-2 mx-auto text-base transition bg-blue-700 rounded-lg sm:text-lg sm:hover:scale-105 sm:max-w-48 hover:bg-blue-800"
