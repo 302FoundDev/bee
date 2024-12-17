@@ -25,7 +25,7 @@ export const Header = () => {
             <li className="mr-2">
               <a
                 className="flex items-center gap-1 transition ease-in-out hover:scale-105"
-                href="https://github.com/302FoundDev/bee-frontend/issues/new"
+                href="https://github.com/302FoundDev/bee"
                 target="_blank"
                 rel="noopener"
               >
