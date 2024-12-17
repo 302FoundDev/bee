@@ -86,7 +86,7 @@ export const DropDownProfile = () => {
 
               <button
                 onClick={handleSignOut}
-                className={`${menuItemStyle} w-full`}
+                className={`${menuItemStyle} w-full mb-4`}
                 type="button"
               >
                 <IoMdLogOut /> Sign out

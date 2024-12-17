@@ -73,7 +73,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
       {isModalOpen && (
         <motion.div
-          className="fixed inset-0 z-10 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-10 bg-neutral-950/30 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

@@ -15,7 +15,7 @@ const App = () => {
     <div
       className="flex flex-col min-h-screen max-w-screen"
     >
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white dark:bg-neutral-950/50 text-black dark:text-neutral-100 transition-all ease-in-out duration-150"></div>
+      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white dark:bg-neutral-950/30 text-black dark:text-neutral-100 transition-all ease-in-out duration-150"></div>
       <main className="flex-grow">
         <Header />
         <Routes>
@@ -33,7 +33,7 @@ const App = () => {
             </Route>
           </Route>
 
-          {/* Not found pages */}
+          {/* Not found page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
