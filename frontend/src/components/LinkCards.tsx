@@ -1,8 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { FRONTEND_URL } from "../config"
 import { Copy, Trash2, ExternalLink } from 'lucide-react'
-import { format, isValid } from 'date-fns'
-import { es } from 'date-fns/locale'
 import { IconButton } from "./ui/IconButton";
 import { useCopyToClipboard } from "./useCopyToClipboard";
 
@@ -12,9 +10,7 @@ export const LinkCards = () => {
   const { CopyToClipboard } = useCopyToClipboard()
 
   const handleCopy = async (shortenedUrl: string) => {
-    const success = await CopyToClipboard(shortenedUrl)
-
-    return success
+    await CopyToClipboard(shortenedUrl)
   }
 
   return (
@@ -29,22 +25,20 @@ export const LinkCards = () => {
               <div className="flex items-center justify-between">
                 <span className="text-lg font-semibold truncate">https://www.example.com/{slug}</span>
 
-                <div className="flex ml-2">
-                  <IconButton onClick={() => handleCopy(`${FRONTEND_URL}/${slug}`)} variant="ghost" size="icon">
+                <div className="flex items-center ml-2 space-x-2">
+                  <IconButton className="p-2 transition-all ease-linear rounded-md dark:bg-neutral-700 dark:hover:bg-neutral-300 dark:hover:text-neutral-950" onClick={() => handleCopy(`${FRONTEND_URL}/${slug}`)} variant="ghost" size="icon">
                     <Copy className="w-4 h-4" />
                     <span className="sr-only">Copy URL</span>
                   </IconButton>
-                  <IconButton variant="ghost" size="icon">
+                  <IconButton className="p-2 transition-all ease-linear rounded-md dark:bg-red-800 dark:hover:bg-red-900" variant="ghost" size="icon">
                     <Trash2 className="w-4 h-4" />
                     <span className="sr-only">Delete URL</span>
                   </IconButton>
                 </div>
               </div>
 
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {created_at && isValid(created_at)
-                  ? `Created at ${format(created_at, 'dd MMMM yyyy HH:mm', { locale: es })}`
-                  : 'Creation date not available'}
+              <p className="mt-1 text-sm dark:text-neutral-400 text-neutral-600">
+                {url}
               </p>
             </div>
 

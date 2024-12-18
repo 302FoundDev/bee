@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, ReactNode, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 
 interface UserUrl {
@@ -12,12 +13,23 @@ interface UserUrl {
   updated_at: string;
 }
 
+interface SigninCredentials {
+  email: string;
+  password: string;
+}
+
+interface SignupCredentials {
+  full_name: string;
+  email: string;
+  password: string;
+}
+
 interface AuthContextType {
   user: { id: number, email: string, full_name: string, urls: UserUrl[] } | null;
   session: boolean | null;
   isLoading: boolean;
-  signin: (credentials: unknown) => Promise<void>;
-  signup: (data: unknown) => Promise<void>;
+  signin: (credentials: SigninCredentials) => Promise<void>;
+  signup: (credentials: SignupCredentials, callbackUrl?: string) => Promise<void>;
   signout: () => Promise<void>;
 }
 
@@ -33,6 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState(null)
   const [session, setSession] = useState<boolean | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -47,9 +60,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         const data = await response.json()
         setUser(data.user)
-        // user?.urls.map((url: any) => {
-        //   console.log(url)
-        // })
         setSession(true)
       }
 
@@ -68,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth()
   }, [])
 
-  const signin = async (credentials: any, callbackUrl = '/dashboard') => {
+  const signin = async (credentials: SigninCredentials) => {
     try {
       const response = await fetch(`${BACKEND_URL}/auth/login`, {
         method: 'POST',
@@ -83,10 +93,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(null)
         throw new Error('Error signing in')
       }
-
       setUser(data.data)
       setSession(true)
-      window.location.href = callbackUrl
+
+      navigate('/dashboard')
     }
     catch (error) {
       console.error(error)
@@ -94,7 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const signup = async (credentials: any, callbackUrl = '/dashboard') => {
+  const signup = async (credentials: SignupCredentials, callbackUrl = '/dashboard') => {
     try {
       const response = await fetch(`${BACKEND_URL}/users/register`, {
         method: 'POST',
@@ -133,7 +143,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       setUser(null)
       setSession(null)
-      window.location.origin
+      window.location.replace('/')
     }
     catch (error) {
       console.error(error)
