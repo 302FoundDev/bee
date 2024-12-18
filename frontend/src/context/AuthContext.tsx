@@ -49,6 +49,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
+
+      setIsLoading(true)
+
       try {
         const response = await fetch(`${BACKEND_URL}/users/profile`, {
           method: 'GET',
@@ -59,15 +62,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           throw new Error('Not authenticated')
         }
         const data = await response.json()
-        setUser(data.user)
         setSession(true)
+        setUser(data.user)
       }
 
       catch (error) {
         console.error(error)
         setSession(null)
         setUser(null)
-        setIsLoading(false)
       }
 
       finally {
@@ -78,7 +80,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth()
   }, [])
 
-  const signin = async (credentials: SigninCredentials) => {
+  const signin = async (credentials: SigninCredentials, callbackUrl = '/dashboard') => {
+
+    setIsLoading(true)
+
     try {
       const response = await fetch(`${BACKEND_URL}/auth/login`, {
         method: 'POST',
@@ -96,15 +101,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(data.data)
       setSession(true)
 
-      navigate('/dashboard')
+      window.location.href = callbackUrl
     }
+
     catch (error) {
       console.error(error)
       throw error
     }
+
+    finally {
+      setIsLoading(false)
+    }
   }
 
-  const signup = async (credentials: SignupCredentials, callbackUrl = '/dashboard') => {
+  const signup = async (credentials: SignupCredentials, callbackUrl = '/signin') => {
     try {
       const response = await fetch(`${BACKEND_URL}/users/register`, {
         method: 'POST',
@@ -113,25 +123,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         credentials: 'include'
       })
 
-      if (response.ok) {
-        const data = await response.json()
-        setUser(data.data)
-        setSession(true)
-        window.location.replace(callbackUrl)
-      }
+      const data = await response.json()
 
-      else {
-        setSession(null)
-      }
+      if (!response.ok) throw new Error(data.error || "Error signing up");
 
+      setUser(data.data)
+      setSession(true)
+      window.location.replace(callbackUrl)
     }
+
     catch (error) {
       console.error(error)
       throw error
     }
+
+    finally {
+      setIsLoading(false)
+    }
   }
 
   const signout = async () => {
+
+    setIsLoading(true)
+
     try {
       const response = await fetch(`${BACKEND_URL}/auth/logout`, {
         method: 'POST',
@@ -148,6 +162,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     catch (error) {
       console.error(error)
       throw error
+    }
+
+    finally {
+      setIsLoading(false)
     }
   }
 

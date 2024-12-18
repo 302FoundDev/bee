@@ -18,7 +18,7 @@ export const LinkCards = () => {
 
   return (
     <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto lg:grid-cols-3 md:grid-cols-2">
-      {user?.urls?.map(({ slug, url, description, created_at }, index) => {
+      {user?.urls && user?.urls?.map(({ slug, url, description, created_at }, index) => {
 
         return (
           <div key={index} className="w-full max-w-lg p-4 mx-auto border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
