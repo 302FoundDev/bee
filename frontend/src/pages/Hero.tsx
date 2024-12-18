@@ -56,16 +56,17 @@ export const Hero = () => {
           <Button
             variant="ghost"
             size="lg"
-            className="flex items-center gap-2 py-1.5 border rounded-full hover:scale-105 transition ease-in-out"
+            className="w-full border rounded-full sm:w-auto py-1.5 hover:scale-105 transition ease-linear"
           >
             <a
               href="https://github.com/302foundev/bee"
               target="_blank"
               rel="noreferrer"
+              className="flex items-center gap-1"
             >
               <Github className="w-5 h-5" />
+              View on GitHub
             </a>
-            View on GitHub
           </Button>
         </motion.div>
       </motion.div>

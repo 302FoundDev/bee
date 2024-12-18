@@ -4,21 +4,22 @@ import { useAuth } from "../context/AuthContext"
 import Loading from "./Loading"
 import { LinkCards } from "./LinkCards"
 import { InputSearch } from "./ui/InputSearch"
-import { useState } from "react"
+import { Toaster } from "sonner"
+// import { useState } from "react"
 
 
 export const Links = () => {
   const { user, isLoading } = useAuth()
-  const [filteredSlugs, setFilteredSlugs] = useState([])
+  // const [filteredSlugs, setFilteredSlugs] = useState([])
 
-  const handleSearch = (value: string) => {
-    const lowercasedValue = value.toLowerCase()
-    const filtered = user?.urls.filter(({ slug }) =>
-      slug.toLowerCase().includes(lowercasedValue)
-    )
+  // const handleSearch = (value: string) => {
+  //   const lowercasedValue = value.toLowerCase()
+  //   const filtered = user?.urls.filter(({ slug }) =>
+  //     slug.toLowerCase().includes(lowercasedValue)
+  //   )
 
-    setFilteredSlugs(filtered)
-  }
+  //   setFilteredSlugs(filtered)
+  // }
 
   const createLink = 'Create link'
   const createNewSlug = 'Create new slug'
@@ -44,7 +45,7 @@ export const Links = () => {
         >
           <div className="flex items-start justify-between w-full mb-8">
 
-            <InputSearch placeholder="Search slug" onSearch={handleSearch} />
+            <InputSearch placeholder="Search slug" onSearch={() => { }} />
 
             <div>
               <CreateSlugModal children={createLink} />
@@ -68,7 +69,10 @@ export const Links = () => {
                 </div>
               </div>
             ) : (
-              <LinkCards />
+              <>
+                <Toaster position="bottom-right" />
+                <LinkCards />
+              </>
             )
           }
 

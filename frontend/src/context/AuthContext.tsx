@@ -1,6 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, ReactNode, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 
 interface UserUrl {
@@ -45,7 +44,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState(null)
   const [session, setSession] = useState<boolean | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
