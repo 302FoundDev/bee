@@ -1,4 +1,4 @@
-import { Github, Bug } from "lucide-react"
+import { Github, Bug, Sparkles } from "lucide-react"
 import { DropDownProfile } from "./DropDownProfile"
 import { ToggleTheme } from "./ToggleTheme"
 import { Link } from "react-router-dom"
@@ -15,8 +15,8 @@ export const Header = () => {
               to="/"
               className="flex items-center gap-2 transition ease-in-out hover:opacity-70"
             >
-              <img src="/bee.svg" alt="bee" className="size-10" />
-              <span className="flex text-2xl font-semibold">bee</span>
+              <Sparkles />
+              <span className="flex text-2xl font-semibold">Bee</span>
             </Link>
           </li>
 
@@ -28,14 +28,14 @@ export const Header = () => {
                 target="_blank"
                 rel="noopener"
               >
-                [<Bug className="size-5" />
-                Bugs ]
+                <Bug className="size-5" />
+                Bugs
               </a>
             </li>
 
             <li>
               <a
-                className="flex transition ease-in-out hover:scale-105"
+                className="flex transition ease-in-out rounded-full hover:scale-105 p-1.5 hover:bg-zinc-800"
                 target="_blank"
                 rel="noopener"
                 href="https://github.com/LaCocinaDePapa/beely"
