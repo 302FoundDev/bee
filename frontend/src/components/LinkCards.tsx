@@ -3,9 +3,12 @@ import { FRONTEND_URL } from "../config"
 import { Copy, Trash2, ExternalLink } from 'lucide-react'
 import { IconButton } from "./ui/IconButton";
 import { useCopyToClipboard } from "./useCopyToClipboard";
+import { useState } from "react";
 
 
 export const LinkCards = () => {
+  const [showDetails, setShowDetails] = useState(false)
+
   const { user } = useAuth()
   const { CopyToClipboard } = useCopyToClipboard()
 
@@ -14,11 +17,11 @@ export const LinkCards = () => {
   }
 
   return (
-    <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-3">
+    <div className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto lg:grid-cols-3 md:grid-cols-2">
       {user?.urls?.map(({ slug, url, description, created_at }, index) => {
 
         return (
-          <div key={index} className="w-full max-w-lg p-4 border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
+          <div key={index} className="w-full max-w-lg p-4 mx-auto border rounded-lg shadow border-neutral-200 dark:border-neutral-800">
 
             <div>
 
@@ -42,34 +45,39 @@ export const LinkCards = () => {
               </p>
             </div>
 
-
-            <div className='mt-5 space-y-3 overflow-hidden transition-all duration-300 ease-in-out bg-transparent'>
-
-              <div>
-                <h3 className="text-sm font-medium">Original URL:</h3>
-                <p className="text-sm break-all text-zinc-600 dark:text-neutral-400">{url}</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-medium">Redirection URL:</h3>
-                <p className="flex items-center text-sm break-all text-zinc-600 dark:text-neutral-400">
-                  {FRONTEND_URL}/{slug}
-                  <a href='/'
-                    className="ml-1 text-blue-600 dark:text-blue-400"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span className="sr-only">Open URL</span>
-                  </a>
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-medium">Description:</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">{description || 'No description available'}</p>
-              </div>
+            <div className="flex items-center justify-between mt-8">
+              <button className="transition ease-linear hover:opacity-80" onClick={() => setShowDetails(!showDetails)}>Show details</button>
             </div>
+
+            {showDetails && (
+              <div className='mt-5 space-y-3 overflow-hidden transition-all duration-300 ease-in-out bg-transparent'>
+
+                <div>
+                  <h3 className="text-sm font-medium">Original URL:</h3>
+                  <p className="text-sm break-all text-zinc-600 dark:text-neutral-400">{url}</p>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium">Redirection URL:</h3>
+                  <p className="flex items-center text-sm break-all text-zinc-600 dark:text-neutral-400">
+                    {FRONTEND_URL}/{slug}
+                    <a href='/'
+                      className="ml-1 text-blue-600 dark:text-blue-400"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span className="sr-only">Open URL</span>
+                    </a>
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium">Description:</h3>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{description || 'No description available'}</p>
+                </div>
+              </div>
+            )}
 
           </div>
         )

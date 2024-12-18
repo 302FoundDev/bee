@@ -1,12 +1,10 @@
 import { useState } from "react"
-import { Button } from "../components/ui/Button"
-import { IoMdClose } from "react-icons/io"
-import { MdRocketLaunch } from "react-icons/md"
 import { motion } from "framer-motion"
-import { createSlug } from "../services/api"
+import { Rocket, X, GitBranchPlus } from "lucide-react"
 import Confetti from 'react-confetti-boom'
-import { BsPlusCircleDotted } from "react-icons/bs";
 import Loading from "./Loading"
+import { Button } from "../components/ui/Button"
+import { createSlug } from "../services/api"
 
 
 interface CreateSlugModalProps {
@@ -67,7 +65,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
         size="md"
         onClick={openModal}
       >
-        <BsPlusCircleDotted className="size-4" />
+        <GitBranchPlus className="w-5 h-5" />
         {children}
       </Button>
 
@@ -94,7 +92,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
           <div className="flex items-center justify-between mb-12">
             <h3 className="mx-auto text-lg font-bold text-neutral-700">Create a new link</h3>
             <button onClick={closeModal} type="button">
-              <IoMdClose />
+              <X />
             </button>
           </div>
           <form onSubmit={handleSubmit}>
@@ -143,11 +141,11 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
                 {loading ? (
                   <div className="flex items-center justify-center gap-1.5">
                     <Loading />
-                    Creating...
+                    Create
                   </div>
                 ) : (
                   <>
-                    <MdRocketLaunch />
+                    <Rocket />
                     Create
                   </>
                 )}

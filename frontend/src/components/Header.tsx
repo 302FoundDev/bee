@@ -1,5 +1,4 @@
-import { FaGithubAlt } from "react-icons/fa";
-import { LiaBugSolid } from "react-icons/lia";
+import { Github, Bug } from "lucide-react"
 import { DropDownProfile } from "./DropDownProfile"
 import { ToggleTheme } from "./ToggleTheme"
 import { Link } from "react-router-dom"
@@ -29,7 +28,7 @@ export const Header = () => {
                 target="_blank"
                 rel="noopener"
               >
-                [<LiaBugSolid className="size-5" />
+                [<Bug className="size-5" />
                 Bugs ]
               </a>
             </li>
@@ -41,7 +40,7 @@ export const Header = () => {
                 rel="noopener"
                 href="https://github.com/LaCocinaDePapa/beely"
               >
-                <FaGithubAlt className="flex size-5" />
+                <Github className="flex size-5" />
               </a>
             </li>
 

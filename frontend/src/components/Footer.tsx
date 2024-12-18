@@ -1,36 +1,24 @@
-import { FaSquareXTwitter, FaLink } from "react-icons/fa6"
+import { MessageCircleHeart } from "lucide-react";
+
 
 export const Footer = () => {
 
   return (
-    <footer className="flex max-w-screen-2xl items-center sm:flex-row gap-1 flex-col w-full sm:justify-between px-4 py-4 text-white mx-auto border-zinc-800">
-      <div className="flex gap-1.5">
-        © 2024
+    <footer className="w-full py-6 border-t text-neutral-950 dark:text-neutral-100 border-neutral-400 dark:border-neutral-800 md:py-0">
+      <div className="container flex flex-col items-center justify-between gap-4 mx-auto md:h-14 md:flex-row">
+        <p className="text-md text-muted-foreground">
+          © 2024 302foundev. Almost all rights reserved
+        </p>
         <a
-          href="https://302foundev.es"
-          className="hover:underline hover:opacity-85"
-          rel="noopener"
+          href="https://bluesky.com/302foundev"
           target="_blank"
+          rel="noreferrer"
+          className="flex items-center space-x-1 transition ease-linear hover:opacity-90"
         >
-          302foundev.
-        </a>
-        Almost all rights reserved
-      </div>
-      <div>
-        <a
-          className="flex w-24"
-          href="https://x.com/302founddev"
-          rel="noopener"
-          target="_blank"
-        >
-          <span className="flex items-center gap-1 hover:opacity-75">
-            <FaSquareXTwitter />
-            Twitter
-            <FaLink />
-          </span>
+          <MessageCircleHeart className="w-5 h-5 text-sky-400" />
+          <span className="text-md text-muted-foreground">BlueSky</span>
         </a>
       </div>
     </footer>
   )
 }
-

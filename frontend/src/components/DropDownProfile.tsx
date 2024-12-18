@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FaUserCircle } from "react-icons/fa";
-import { TiHomeOutline } from "react-icons/ti";
-import { MdOutlineDashboard } from "react-icons/md";
-import { IoMdLogOut } from "react-icons/io";
+import { House, LayoutDashboard, LogOut, Settings, UserCircle } from "lucide-react";
 import Loading from "./Loading";
+import { motion } from "framer-motion";
 
 export const DropDownProfile = () => {
   const { session, isLoading, signout, user } = useAuth();
@@ -25,9 +22,9 @@ export const DropDownProfile = () => {
   const closeDrop = () => setIsDropOpen(false);
 
   const links = [
-    { icon: <TiHomeOutline />, name: "Home", to: "/" },
-    { icon: <MdOutlineDashboard />, name: "Dashboard", to: "/dashboard" },
-    { icon: <IoSettingsOutline />, name: "Settings", to: "/dashboard/settings" },
+    { icon: <House />, name: "Home", to: "/" },
+    { icon: <LayoutDashboard />, name: "Dashboard", to: "/dashboard" },
+    { icon: <Settings />, name: "Settings", to: "/dashboard/settings" },
   ];
 
   const handleSignOut = async () => {
@@ -43,12 +40,31 @@ export const DropDownProfile = () => {
   const menuItemStyle =
     "flex gap-1.5 items-center cursor-default px-1 py-2 text-sm font-semibold rounded text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-slate-800";
 
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.90,
+      transition: {
+        type: "spring",
+        duration: 0.2,
+      }
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        duration: 0.3,
+      }
+    }
+  }
+
   return (
     <>
       {session ? (
         <div className="relative flex">
           <button className="relative z-10" onClick={openDrop}>
-            <FaUserCircle className="size-7" />
+            <UserCircle className="size-7" />
           </button>
 
           {isDropOpen && (
@@ -61,8 +77,12 @@ export const DropDownProfile = () => {
 
           {/* Dropdown Menu */}
           {isDropOpen && (
-            <div
-              className="absolute right-0 z-20 px-2 mt-2 transition duration-300 ease-in-out origin-top transform scale-y-100 bg-white rounded-md shadow-lg opacity-100 border-neutral-800 top-5 w-60 dark:bg-neutral-950 dark:border-zinc-300"
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={dropdownVariants}
+              className="absolute right-0 z-20 px-2 mt-2 bg-white rounded-md shadow-lg opacity-100 border-neutral-800 top-5 w-60 dark:bg-neutral-950 dark:border-zinc-300"
             >
               <div className="pt-4 mb-2 border-b border-neutral-200 dark:border-neutral-800">
                 <p className="text-[15px] text-neutral-900 font-semibold dark:text-neutral-100">
@@ -89,9 +109,9 @@ export const DropDownProfile = () => {
                 className={`${menuItemStyle} w-full mb-4`}
                 type="button"
               >
-                <IoMdLogOut /> Sign out
+                <LogOut /> Sign out
               </button>
-            </div>
+            </motion.div>
           )}
         </div>
       ) : (

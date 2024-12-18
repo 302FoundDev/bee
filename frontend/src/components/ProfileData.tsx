@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IoSaveOutline } from "react-icons/io5"
 import { Button } from "./ui/Button"
 import { motion } from "framer-motion"
 import { deleteUser } from "../services/api"
 import { useAuth } from "../context/AuthContext"
 import { useState } from "react"
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal"
-import { IoWarning } from "react-icons/io5";
+import { Save, TriangleAlert } from "lucide-react"
 
 
 export const UserProfileUpdate = () => {
@@ -110,7 +109,7 @@ export const UserProfileUpdate = () => {
                     disabled
                   />
                   <span className="flex items-center gap-1 mt-2 text-sm text-red-500 dark:text-red-400">
-                    <IoWarning className="text-red-500" />
+                    <TriangleAlert className="text-red-500" />
                     You can't change your email address
                   </span>
                 </div>
@@ -122,7 +121,7 @@ export const UserProfileUpdate = () => {
                   size="lg"
                   className="flex items-center gap-2 text-white rounded-md"
                 >
-                  <IoSaveOutline />
+                  <Save className="w-5 h-5" />
                   Save
                 </Button>
               </div>

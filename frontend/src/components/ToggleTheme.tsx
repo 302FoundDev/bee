@@ -1,6 +1,5 @@
+import { Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react"
-import { LuSun } from "react-icons/lu";
-import { FaRegMoon } from "react-icons/fa";
 
 export const ToggleTheme = () => {
     const savedTheme =
@@ -28,10 +27,10 @@ export const ToggleTheme = () => {
                 aria-label={`Change theme ${selectedTheme === "light" ? "dark" : "light"}`}
             >
                 {selectedTheme === "light" ? (
-                    <LuSun className="size-4" />
+                    <Sun className="w-5 h-5" />
                 )
                     : (
-                        <FaRegMoon className="size-4" />
+                        <Moon className="w-5 h-5" />
                     )}
             </button>
         </>
