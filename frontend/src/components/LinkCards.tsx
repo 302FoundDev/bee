@@ -28,7 +28,6 @@ export const LinkCards = () => {
 
   return (
     <section className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {/* Mostrar las URLs filtradas o todas las URLs del usuario */}
       {filteredSlugs.length > 0 ? (
         filteredSlugs.map(({ id, url, slug, description }) => (
           <div
