@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useSlugs } from "./UseSlugs";
 
+
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
 
@@ -26,8 +27,9 @@ export const LinkCards = () => {
   };
 
   return (
-    <section className="grid items-center justify-center w-full grid-cols-1 gap-5 mx-auto lg:grid-cols-3 md:grid-cols-2">
-      {filteredSlugs?.length > 0 ? (
+    <section className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {/* Mostrar las URLs filtradas o todas las URLs del usuario */}
+      {filteredSlugs.length > 0 ? (
         filteredSlugs.map(({ id, url, slug, description }) => (
           <div
             key={id}
@@ -93,7 +95,7 @@ export const LinkCards = () => {
           </div>
         ))
       ) : (
-        <div className="flex items-center justify-center w-full h-96">
+        <div className="flex items-center justify-center w-full h-8">
           <p className="text-lg text-neutral-600 dark:text-neutral-400">
             No URLs found
           </p>

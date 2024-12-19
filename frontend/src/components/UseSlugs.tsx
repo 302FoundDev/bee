@@ -24,8 +24,8 @@ export const useSlugs = (): UseSlugsProps => {
 
     const lowercasedValue = value.trim().toLowerCase();
 
-    const filtered = user?.urls?.filter(({ slug }: UserUrl) => {
-      const matches = slug.toLowerCase().includes(lowercasedValue);
+    const filtered = user?.urls?.filter((slug) => {
+      const matches = slug.slug.toLowerCase().includes(lowercasedValue);
       return matches;
     });
 
