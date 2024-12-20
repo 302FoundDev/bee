@@ -16,7 +16,7 @@ interface UseSlugsProps {
 export const useSlugs = (): UseSlugsProps => {
   const { user } = useAuth();
 
-  const [filteredSlugs, setFilteredSlugs] = useState<UserUrl[]>([]);
+  const [filteredSlugs, setFilteredSlugs] = useState<UserUrl[]>(user?.urls || []);
 
   const handleSearch = (value: string) => {
 
