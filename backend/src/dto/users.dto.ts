@@ -1,57 +1,64 @@
-import { IsString, IsEmail, IsNotEmpty, IsOptional, IsNumber } from 'class-validator'
+/* eslint-disable prettier/prettier */
+import {
+  IsString,
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
-  readonly first_name: string
+  readonly first_name: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly last_name: string
+  readonly last_name: string;
 
   @IsEmail()
   @IsNotEmpty()
-  readonly email: string
+  readonly email: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly password: string
+  readonly password: string;
 }
 
 export class UpdateUserDto {
   @IsString()
   @IsOptional()
-  readonly full_name: string
+  readonly first_name: string;
 
   @IsString()
   @IsOptional()
-  readonly password: string
+  readonly last_name: string;
 }
 
 export class ExistingUsersDto {
   @IsEmail()
   @IsNotEmpty()
-  readonly email: string
+  readonly email: string;
 }
 
 export class GetUserDataDto {
   @IsEmail()
   @IsNotEmpty()
-  readonly email: string
+  readonly email: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly password: string
+  readonly password: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly first_name: string
+  readonly first_name: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly last_name: string
+  readonly last_name: string;
 
   @IsNumber()
   @IsNotEmpty()
-  readonly created_at: number
+  readonly created_at: number;
 }

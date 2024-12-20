@@ -30,7 +30,7 @@ export class UsersService {
 
     try {
 
-      const { full_name, email, password } = createUserDto
+      const { first_name, last_name, email, password } = createUserDto
 
       const existingUser = await this.existingUser(email)
 
@@ -40,7 +40,8 @@ export class UsersService {
 
       const user = await this.prisma.user.create({
         data: {
-          full_name,
+          first_name,
+          last_name,
           email,
           password: hashedPassword
         }
