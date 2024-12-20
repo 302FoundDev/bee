@@ -4,7 +4,6 @@ import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma.service'
 import { User } from '@prisma/client'
 import { CreateUserDto } from 'src/dto/users.dto'
-import { url } from 'inspector'
 
 @Injectable()
 export class UsersService {
@@ -102,7 +101,10 @@ export class UsersService {
         where: { id: userId }
       })
 
-      return { status: 'success', message: 'User deleted successfully', user, relations }
+      return {
+        user,
+        relations
+      }
     } catch (error) {
       console.error(`Error deleting user: ${error.message}`)
       throw new Error(`Error deleting user: ${error.message}`)

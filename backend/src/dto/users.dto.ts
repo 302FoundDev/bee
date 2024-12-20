@@ -1,9 +1,13 @@
-import {  IsString, IsEmail, IsNotEmpty, IsOptional, IsNumber } from 'class-validator'
+import { IsString, IsEmail, IsNotEmpty, IsOptional, IsNumber } from 'class-validator'
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
-  readonly full_name: string
+  readonly first_name: string
+
+  @IsString()
+  @IsNotEmpty()
+  readonly last_name: string
 
   @IsEmail()
   @IsNotEmpty()
@@ -18,10 +22,6 @@ export class UpdateUserDto {
   @IsString()
   @IsOptional()
   readonly full_name: string
-
-  @IsEmail()
-  @IsOptional()
-  readonly email: string
 
   @IsString()
   @IsOptional()
@@ -45,7 +45,11 @@ export class GetUserDataDto {
 
   @IsString()
   @IsNotEmpty()
-  readonly full_name: string
+  readonly first_name: string
+
+  @IsString()
+  @IsNotEmpty()
+  readonly last_name: string
 
   @IsNumber()
   @IsNotEmpty()
