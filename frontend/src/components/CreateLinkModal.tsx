@@ -71,7 +71,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
       {isModalOpen && (
         <motion.div
-          className="fixed inset-0 z-10 bg-neutral-950/30 backdrop-blur-sm"
+          className="fixed inset-0 z-10 bg-neutral-900/50 dark:bg-neutral-950/80"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -83,14 +83,14 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
       {isModalOpen && (
         <motion.div
-          className="absolute border mx-auto left-0 right-0 rounded-lg h-[500px] max-w-screen-sm sm:w-auto text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950/50 border-neutral-300 dark:border-neutral-800 z-20"
+          className="absolute border mx-auto left-0 right-0 rounded-lg h-[500px] max-w-screen-sm sm:w-auto text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 z-20"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
         >
           <div className="flex items-center justify-between mb-12">
-            <h3 className="mx-auto text-lg font-bold text-neutral-700">Create a new link</h3>
+            <h3 className="mx-auto text-lg font-bold text-neutral-950 dark:text-neutral-100">Create a new link</h3>
             <button onClick={closeModal} type="button">
               <X />
             </button>

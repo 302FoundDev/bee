@@ -1,6 +1,8 @@
+import { BACKEND_URL } from "../config"
+
 export const createSlug = async (url: string, slug: string, description: string) => {
   try {
-    const response = await fetch('http://localhost:9000/urls/create-slug', {
+    const response = await fetch(`${BACKEND_URL}/urls/create-slug`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -13,7 +15,9 @@ export const createSlug = async (url: string, slug: string, description: string)
       throw new Error('Failed to create slug')
     }
 
-    return await response.json()
+    const data = await response.json()
+
+    return data
 
   } catch (error) {
     throw new Error(`Error shortening URL: ${error}`)
@@ -24,7 +28,7 @@ export const deleteUser = async () => {
 
   try {
 
-    const response = await fetch(`http://localhost:9000/users/delete-user/`, {
+    const response = await fetch(`${BACKEND_URL}/users/delete-user/`, {
       method: 'DELETE',
       credentials: 'include',
     })
@@ -42,7 +46,7 @@ export const deleteUser = async () => {
 
 export const getUserData = async () => {
   try {
-    const response = await fetch('http://localhost:9000/users/profile', {
+    const response = await fetch(`${BACKEND_URL}/users/profile`, {
       method: 'GET',
       credentials: 'include',
     })
