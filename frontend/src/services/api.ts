@@ -1,4 +1,5 @@
 import { BACKEND_URL } from "../config"
+import { toast } from "sonner"
 
 export const createSlug = async (url: string, slug: string, description: string) => {
   try {
@@ -16,6 +17,12 @@ export const createSlug = async (url: string, slug: string, description: string)
     }
 
     const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
+    }
+
+    toast.success('Slug created successfully')
 
     return data
 
