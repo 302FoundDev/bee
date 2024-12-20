@@ -67,8 +67,8 @@ export const LinkCards = () => {
                     <span className="sr-only">Copy URL</span>
                   </IconButton>
 
-                  <IconButton
-                    className="p-2 transition-all ease-linear bg-red-800 rounded-md text-neutral-100 hover:bg-red-900"
+                  <IconButton                                                                                                                   
+                    className="p-2 transition-all ease-linear bg-red-700 rounded-md text-neutral-100 hover:bg-red-800"
                     variant="ghost"
                     size="icon"
                   >

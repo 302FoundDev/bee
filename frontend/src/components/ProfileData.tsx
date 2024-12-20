@@ -58,7 +58,7 @@ export const UserProfileUpdate = () => {
           <div>
             <form onSubmit={handleSubmit} className="px-4 py-5 sm:p-6">
               <div className="grid grid-cols-3 gap-6">
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-4">
                   <label
                     htmlFor="firstName"
                     className="block font-medium dark:text-neutral-200"
@@ -69,13 +69,13 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    placeholder="your name here.."
+                    placeholder="John"
                     autoComplete="given-name"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 border border-zinc-800 bg-transparent rounded-md focus:border-zinc-950"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800 focus:border-zinc-950"
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6 sm:col-span-4">
                   <label
                     htmlFor="lastName"
                     className="block font-medium"
@@ -86,9 +86,9 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    placeholder="your lastname here..."
+                    placeholder="Doe"
                     autoComplete="family-name"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 border border-zinc-800 bg-transparent rounded-md"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800"
                   />
                 </div>
 
@@ -105,7 +105,7 @@ export const UserProfileUpdate = () => {
                     id="email"
                     placeholder={user?.email}
                     autoComplete="email"
-                    className="px-4 py-[5px] w-full lg:w-[800px] mt-1 border border-zinc-800 bg-transparent rounded-md"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800"
                     disabled
                   />
                   <span className="flex items-center gap-1 mt-2 text-sm text-red-500 dark:text-red-400">
@@ -114,7 +114,7 @@ export const UserProfileUpdate = () => {
                   </span>
                 </div>
               </div>
-              <div className="mt-8">
+              <div className="flex items-center justify-end w-full mt-8">
                 <Button
                   type="submit"
                   variant="gradient"
@@ -129,7 +129,7 @@ export const UserProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex flex-col px-5 py-5 bg-white border rounded-md shadow border-zinc-300 dark:border-zinc-800 dark:bg-transparent lg:mt-0 sm:mt-28">
+        <div className="flex flex-col px-5 py-5 bg-white border rounded-md border-neutral-300 dark:border-zinc-800 dark:bg-transparent lg:mt-0 sm:mt-28">
           <div>
             <h2 className="text-3xl font-semibold">Account</h2>
             <p className="mt-3 text-sm">
@@ -140,10 +140,11 @@ export const UserProfileUpdate = () => {
           <div className="w-full gap-2 mt-8">
             <h4>Delete account:</h4>
             <Button
-              variant="base"
+              variant="ghost"
               onClick={() => setIsConfirmingDelete(true)}
-              className="inline-flex items-center justify-center w-full gap-2 py-2 mx-0 mt-2 text-white bg-red-500 rounded-md hover:bg-red-600 md:w-48 lg:w-48"
+              className="flex items-center justify-center w-full gap-2 py-2 mx-0 mt-2 transition ease-linear bg-red-600 rounded-md text-neutral-200 hover:bg-red-700 md:w-48 lg:w-48"
             >
+
               Delete account
             </Button>
           </div>

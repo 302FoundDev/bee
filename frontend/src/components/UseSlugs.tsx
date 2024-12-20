@@ -29,12 +29,8 @@ export const useSlugs = (): UseSlugsProps => {
       return slug.slug.toLowerCase().includes(lowercasedValue);
     });
 
-    console.log(filtered);
-
     setFilteredSlugs(filtered || []);
   };
-
-  console.log(filteredSlugs);
 
   return {
     filteredSlugs,
