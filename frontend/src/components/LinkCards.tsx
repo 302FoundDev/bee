@@ -4,12 +4,15 @@ import { IconButton } from "./ui/IconButton";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useSlugs } from "./UseSlugs";
+import { useAuth } from "../context/AuthContext";
+import Loading from "./Loading";
 
 
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
 
   const { filteredSlugs } = useSlugs();
+  const { isLoading } = useAuth();
 
   const handleCopy = (slug: string) => {
     navigator.clipboard
@@ -25,6 +28,17 @@ export const LinkCards = () => {
         toast.error("Error copying to clipboard");
       });
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full h-8">
+        <p className="text-lg text-neutral-600 dark:text-neutral-400">
+          <Loading />
+          Loading...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <section className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -54,7 +68,7 @@ export const LinkCards = () => {
                   </IconButton>
 
                   <IconButton
-                    className="p-2 transition-all ease-linear rounded-md dark:bg-red-800 dark:hover:bg-red-900"
+                    className="p-2 transition-all ease-linear bg-red-800 rounded-md text-neutral-100 hover:bg-red-900"
                     variant="ghost"
                     size="icon"
                   >
