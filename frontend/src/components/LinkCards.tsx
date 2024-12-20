@@ -46,7 +46,7 @@ export const LinkCards = () => {
                     size="icon"
                   >
                     {copiedSlug === `${FRONTEND_URL}/${slug}` ? (
-                      <Check className="w-4 h-4 text-green-500" />  
+                      <Check className="w-4 h-4 text-green-500" />
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}

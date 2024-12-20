@@ -15,23 +15,28 @@ interface UseSlugsProps {
 
 export const useSlugs = (): UseSlugsProps => {
   const { user } = useAuth();
-
   const [filteredSlugs, setFilteredSlugs] = useState<UserUrl[]>(user?.urls || []);
 
+  // Función que maneja la búsqueda
   const handleSearch = (value: string) => {
+    // Si no hay texto de búsqueda, mostramos todas las URLs
+    if (!value.trim()) {
+      setFilteredSlugs(user?.urls || []);
+      return;
+    }
 
-    if (!value.trim()) setFilteredSlugs(user?.urls || []);
-
+    // Filtramos las URLs del usuario
     const lowercasedValue = value.trim().toLowerCase();
 
     const filtered = user?.urls?.filter((slug) => {
-      const matches = slug.slug.toLowerCase().includes(lowercasedValue);
-      return matches;
+      return slug.slug.toLowerCase().includes(lowercasedValue);
     });
 
-    console.log(filtered);
+    // Actualizamos el estado con las URLs filtradas
     setFilteredSlugs(filtered || []);
   };
+
+  console.log(filteredSlugs);
 
   return {
     filteredSlugs,
