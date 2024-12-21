@@ -23,13 +23,11 @@ export const Links = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "linear" }}
         >
-          <div className="flex items-start justify-between w-full mb-8">
+          <div className="flex flex-col items-start justify-between w-full gap-8 mb-8 lg:gap-0 lg:flex-row">
 
             <InputSearch placeholder="Search slug" onSearch={handleSearch} />
 
-            <div>
-              <CreateSlugModal children={createLink} />
-            </div>
+            <CreateSlugModal children={createLink} />
           </div>
 
           {

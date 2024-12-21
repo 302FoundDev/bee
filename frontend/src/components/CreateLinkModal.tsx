@@ -68,7 +68,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
   }
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col tems-center">
 
       <Button
         className="inline-flex rounded-lg items-center gap-1.5 border border-neutral-300 dark:border-neutral-800"

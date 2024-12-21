@@ -30,13 +30,13 @@ export const Hero = () => {
 
       <motion.div
         variants={containerVariants}
-        className="flex flex-col items-center justify-center mt-60"
+        className="flex flex-col items-center justify-center mt-20 lg:mt-40"
         initial="hidden"
         animate="visible"
       >
         <motion.h1
           variants={itemVariants}
-          className="mb-4 text-4xl font-bold tracking-tighter text-transparent h-[85px] bg-gradient-to-r from-blue-500 via-pink-700 to-purple-600 bg-clip-text sm:text-5xl md:text-6xl lg:text-7xl">
+          className="mb-4 text-4xl p-2 font-bold tracking-tighter text-center text-transparent bg-gradient-to-r from-blue-500 via-pink-700 to-purple-600 bg-clip-text sm:text-5xl md:text-6xl lg:text-7xl">
           Streamline Your URL Management with Bee
         </motion.h1>
 
