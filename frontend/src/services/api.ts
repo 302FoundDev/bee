@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "../config"
+import { BACKEND_URL } from "../constants"
 import { toast } from "sonner"
 
 export const createSlug = async (url: string, slug: string, description: string) => {

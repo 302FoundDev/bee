@@ -1,4 +1,4 @@
-import { FRONTEND_URL } from "../config";
+import { FRONTEND_URL } from "../constants";
 import { Copy, Trash2, ExternalLink, Check } from "lucide-react";
 import { IconButton } from "./ui/IconButton";
 import { toast } from "sonner";
@@ -67,7 +67,7 @@ export const LinkCards = () => {
                     <span className="sr-only">Copy URL</span>
                   </IconButton>
 
-                  <IconButton                                                                                                                   
+                  <IconButton
                     className="p-2 transition-all ease-linear bg-red-700 rounded-md text-neutral-100 hover:bg-red-800"
                     variant="ghost"
                     size="icon"

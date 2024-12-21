@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, ReactNode, useEffect } from "react"
-import { BACKEND_URL } from "../config";
+import { BACKEND_URL } from "../constants";
 
 interface UserUrl {
   id: number;
