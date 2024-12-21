@@ -42,8 +42,19 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
     try {
       const response = await createSlug(url, slug, description)
-      setShowConfetti(true)
-      return response
+
+      if (response.success) {
+        setShowConfetti(true)
+        form.reset()
+
+        setTimeout(() => {
+          closeModal()
+        }, 2000)
+      }
+
+      else {
+        throw new Error(response.message)
+      }
     }
 
     catch (error) {

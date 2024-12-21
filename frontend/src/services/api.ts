@@ -68,3 +68,26 @@ export const getUserData = async () => {
     throw new Error(`Error getting user data: ${error}`)
   }
 }
+
+export const updateUserData = async (data: { name: string, email: string }) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/users/update-profile`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to update user data')
+    }
+
+    return await response.json()
+
+  } catch (error) {
+    throw new Error(`Error updating user data: ${error}`)
+  }
+}
+
