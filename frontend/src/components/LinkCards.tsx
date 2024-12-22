@@ -7,12 +7,15 @@ import { useSlugs } from "./UseSlugs";
 import { useAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
+import { deleteSlug } from "../services/api";
+import { set } from "date-fns";
 
 
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [slugToDelete, setSlugToDelete] = useState<string | null>(null)
 
   const { filteredSlugs } = useSlugs();
   const { isLoading } = useAuth();
@@ -33,22 +36,27 @@ export const LinkCards = () => {
   };
 
   const handleDelete = async () => {
+    if (!slugToDelete) return;
 
-    setIsDeleting(true)
+    setIsDeleting(true);
 
     try {
-      // await deleteSlug()
-      console.log("Delete slug")
+      await deleteSlug(slugToDelete);
+      toast.success("Slug deleted successfully");
     }
 
     catch (error) {
-      console.error(`Error deleting user: ${error}`)
-    } finally {
-      setIsDeleting(false)
-      setIsConfirmingDelete(false)
+      console.error(`Error deleting slug: ${error}`);
+      toast.error(`Failed to delete slug: ${error || 'An unexpected error occurred'}`);
+
     }
 
-  }
+    finally {
+      setIsDeleting(false);
+      setIsConfirmingDelete(false);
+      setSlugToDelete(null);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -92,7 +100,10 @@ export const LinkCards = () => {
                     className="p-2 transition-all ease-linear bg-red-700 rounded-md text-neutral-100 hover:bg-red-800"
                     variant="ghost"
                     size="icon"
-                    onClick={() => setIsConfirmingDelete(true)}
+                    onClick={() => {
+                      setSlugToDelete(slug);
+                      setIsConfirmingDelete(true);
+                    }}
                   >
                     <Trash2 className="w-4 h-4" />
                     <span className="sr-only">Delete URL</span>
@@ -127,6 +138,14 @@ export const LinkCards = () => {
                 </p>
               </div>
             </div>
+
+            <ConfirmingDeleteModal
+              isDeleting={isDeleting}
+              isOpen={isConfirmingDelete}
+              onClose={() => setIsConfirmingDelete(false)}
+              handleDelete={handleDelete}
+            />
+
           </div>
         ))
       ) : (
@@ -136,13 +155,6 @@ export const LinkCards = () => {
           </p>
         </div>
       )}
-
-      <ConfirmingDeleteModal
-        isDeleting={isDeleting}
-        isOpen={isConfirmingDelete}
-        onClose={() => setIsConfirmingDelete(false)}
-        handleDelete={handleDelete}
-      />
     </section>
   );
 };
