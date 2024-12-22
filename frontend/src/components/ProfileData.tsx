@@ -97,6 +97,7 @@ export const UserProfileUpdate = () => {
                     placeholder="John"
                     autoComplete="given-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800 focus:border-zinc-950"
+                    required
                   />
                 </div>
 
@@ -114,6 +115,7 @@ export const UserProfileUpdate = () => {
                     placeholder="Doe"
                     autoComplete="family-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800"
+                    required
                   />
                 </div>
 
