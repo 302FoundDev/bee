@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext"
 import { useState } from "react"
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal"
 import { Save, TriangleAlert, Loader2 } from "lucide-react"
-import { toast } from "sonner"
+import { toast, Toaster } from "sonner"
 
 
 export const UserProfileUpdate = () => {
@@ -36,9 +36,6 @@ export const UserProfileUpdate = () => {
       });
 
       if (response.status === "success") {
-
-        console.log(response);
-
         toast.success("Profile updated successfully");
         return response;
       }
@@ -80,6 +77,9 @@ export const UserProfileUpdate = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "linear" }}
     >
+
+      <Toaster />
+
       <div className="px-4 mx-auto space-y-8 max-w-screen-2xl">
         <div className="overflow-hidden bg-transparent border rounded-md shadow border-zinc-300 dark:border-zinc-800 sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
