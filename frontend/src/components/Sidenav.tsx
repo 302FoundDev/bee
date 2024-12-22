@@ -12,7 +12,7 @@ export const Sidenav = ({ pathname }: any) => {
   }
 
   return (
-    <section className='border-b border-zinc-800'>
+    <section className='border-b border-neutral-300 dark:border-neutral-800'>
       <div className='flex px-4 mx-auto gap-14 max-w-screen-2xl'>
 
         <div>

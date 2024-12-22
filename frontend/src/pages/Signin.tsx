@@ -68,7 +68,7 @@ export const Signin = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-neutral-100 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent dark:border-neutral-800 dark:text-neutral-100"
                   placeholder="name@company.com"
                   required
                 />
@@ -85,7 +85,7 @@ export const Signin = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 dark:border-neutral-800 dark:placeholder-gray-400 dark:text-neutral-100 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block w-full px-3 py-1.5 text-neutral-900 border border-neutral-200 rounded-md bg-transparent dark:border-neutral-800 dark:text-neutral-100"
                   required
                 />
               </div>

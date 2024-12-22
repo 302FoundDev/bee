@@ -81,7 +81,7 @@ export const UserProfileUpdate = () => {
       <Toaster />
 
       <div className="px-4 mx-auto space-y-8 max-w-screen-2xl">
-        <div className="overflow-hidden bg-transparent border rounded-md shadow border-zinc-300 dark:border-zinc-800 sm:rounded-lg">
+        <div className="overflow-hidden bg-transparent border rounded-md border-neutral-300 dark:border-neutral-800 sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
             <h2 className="text-3xl font-semibold leading-6 text-neutral-900 dark:text-white">
               General
@@ -106,7 +106,7 @@ export const UserProfileUpdate = () => {
                     id="firstName"
                     placeholder="John"
                     autoComplete="given-name"
-                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800 focus:border-zinc-950"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
                   />
                 </div>
@@ -124,7 +124,7 @@ export const UserProfileUpdate = () => {
                     id="lastName"
                     placeholder="Doe"
                     autoComplete="family-name"
-                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
                   />
                 </div>
@@ -142,7 +142,7 @@ export const UserProfileUpdate = () => {
                     id="email"
                     placeholder={user?.email}
                     autoComplete="email"
-                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-400 dark:border-zinc-800"
+                    className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     disabled
                   />
                   <span className="flex items-center gap-1 mt-2 text-sm text-red-500 dark:text-red-400">
@@ -166,7 +166,7 @@ export const UserProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex flex-col px-5 py-5 bg-white border rounded-md border-neutral-300 dark:border-zinc-800 dark:bg-transparent lg:mt-0 sm:mt-28">
+        <div className="flex flex-col px-5 py-5 bg-neutral-100 border rounded-md border-neutral-300 dark:border-neutral-800 dark:bg-transparent lg:mt-0 sm:mt-28">
           <div>
             <h2 className="text-3xl font-semibold">Account</h2>
             <p className="mt-3 text-sm">
