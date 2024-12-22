@@ -87,11 +87,12 @@ export class UsersService {
         }
       })
 
-      return user
+      const { password, createdAt, ...userData } = user
+
+      return userData
     }
 
     catch (error) {
-      console.error(`Error updating user: ${error.message}`)
       throw new Error(`Error updating user: ${error.message}`)
     }
   }

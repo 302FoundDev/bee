@@ -109,16 +109,16 @@ export const updateUserData = async (data: { first_name: string, last_name: stri
       body: JSON.stringify(data)
     })
 
-    if (!response.ok) {
-      throw new Error('Failed to update user data')
-    }
-
     const responseData = await response.json()
+
+    if (responseData.status !== 'success') {
+      throw new Error(responseData.message || 'Failed to update user data');
+    }
 
     return responseData;
 
   } catch (error) {
-    throw new Error(`Error updating user data: ${error}`)
+    throw new Error(`Error updating user data: ${(error as Error).message}`)
   }
 }
 

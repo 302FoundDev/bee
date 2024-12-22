@@ -7,6 +7,7 @@ import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal"
 import { Save, TriangleAlert, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
+
 export const UserProfileUpdate = () => {
   const { user } = useAuth()
 
@@ -28,17 +29,26 @@ export const UserProfileUpdate = () => {
     const firstName = event.currentTarget.elements.firstName.value;
     const lastName = event.currentTarget.elements.lastName.value;
 
-    const response = await updateUserData({
-      first_name: firstName,
-      last_name: lastName,
-    });
+    try {
+      const response = await updateUserData({
+        first_name: firstName,
+        last_name: lastName,
+      });
 
-    if (!response.ok) {
-      toast.error('Error updating profile');
-      return;
+      if (response.status === "success") {
+
+        console.log(response);
+
+        toast.success("Profile updated successfully");
+        return response;
+      }
+
+      toast.error("Error updating profile");
     }
 
-    toast.success('Profile updated successfully');
+    catch (error) {
+      console.error(error);
+    }
   };
 
   const handleDelete = async () => {

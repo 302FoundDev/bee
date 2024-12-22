@@ -28,7 +28,7 @@ export class UsersController {
     }
     catch (error) {
       console.log(error, error.message)
-      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.UNAUTHORIZED)
+      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -74,13 +74,13 @@ export class UsersController {
       const user = await this.userService.updateUser(sub, data)
 
       if (!user) {
-        throw new Error('User not found')
+        throw new HttpException({ status: 'error', message: 'User not found' }, HttpStatus.NOT_FOUND)
       }
 
-      return { status: 'success', message: 'User updated successfully', user }
+      return { status: 'success', message: 'User updated successfully', data: user }
     }
     catch (error) {
-      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.UNAUTHORIZED)
+      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -116,7 +116,7 @@ export class UsersController {
     }
 
     catch (error) {
-      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.UNAUTHORIZED)
+      throw new HttpException({ status: 'error', message: error.message }, HttpStatus.BAD_REQUEST)
     }
   }
 
