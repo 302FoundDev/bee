@@ -24,7 +24,7 @@ interface SignupCredentials {
 }
 
 interface AuthContextType {
-  user: { id: number, email: string, full_name: string, urls: UserUrl[] } | null;
+  user: { id: number, email: string, first_name: string, last_name: string, urls: UserUrl[] } | null;
   session: boolean | null;
   isLoading: boolean;
   signin: (credentials: SigninCredentials) => Promise<void>;

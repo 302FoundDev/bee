@@ -22,9 +22,9 @@ export const DropDownProfile = () => {
   const closeDrop = () => setIsDropOpen(false);
 
   const links = [
-    { icon: <House />, name: "Home", to: "/" },
-    { icon: <LayoutDashboard />, name: "Dashboard", to: "/dashboard" },
-    { icon: <Settings />, name: "Settings", to: "/dashboard/settings" },
+    { icon: <House />, reference: "Home", to: "/" },
+    { icon: <LayoutDashboard />, reference: "Dashboard", to: "/dashboard" },
+    { icon: <Settings />, reference: "Settings", to: "/dashboard/settings" },
   ];
 
   const handleSignOut = async () => {
@@ -86,7 +86,7 @@ export const DropDownProfile = () => {
             >
               <div className="pt-4 mb-2 border-b border-neutral-200 dark:border-neutral-800">
                 <p className="text-[15px] text-neutral-900 font-semibold dark:text-neutral-100">
-                  {user?.full_name}
+                  {user?.first_name + " " + user?.last_name}
                 </p>
                 <p className="mb-2 text-sm opacity-75 text-neutral-900 dark:text-neutral-100">
                   {user?.email}
@@ -95,12 +95,12 @@ export const DropDownProfile = () => {
 
               {links.map((link) => (
                 <Link
-                  key={link.name}
-                  to={link.to}
+                  key={link.reference}
+                  to={link.reference}
                   onClick={closeDrop}
                   className={`${menuItemStyle}`}
                 >
-                  {link.icon} {link.name}
+                  {link.icon} {link.reference}
                 </Link>
               ))}
 
