@@ -2,7 +2,6 @@
 import { Injectable } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma.service'
-import { User } from '@prisma/client'
 import { CreateUserDto, UpdateUserDto } from 'src/dto/users.dto'
 
 @Injectable()
@@ -82,11 +81,16 @@ export class UsersService {
     try {
       const user = await this.prisma.user.update({
         where: { id },
-        data
+        data: {
+          first_name: data.first_name,
+          last_name: data.last_name,
+        }
       })
 
       return user
-    } catch (error) {
+    }
+
+    catch (error) {
       console.error(`Error updating user: ${error.message}`)
       throw new Error(`Error updating user: ${error.message}`)
     }
