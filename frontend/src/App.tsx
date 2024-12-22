@@ -12,11 +12,11 @@ import { ProtectedRoute } from "./middleware/routes"
 
 const App = () => {
   return (
-    <div
-      className="flex flex-col min-h-screen max-w-screen"
+    <section
+      className="flex flex-col min-h-screen text-black bg-neutral-100 dark:bg-neutral-950/30 dark:text-neutral-100 transition-all ease-in-out duration-150"
     >
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-white dark:bg-neutral-950/30 text-black dark:text-neutral-100 transition-all ease-in-out duration-150"></div>
-      <main className="flex-grow">
+      <div className="absolute top-0 z-[-2] min-h-screen min-w-screen transition-all ease-in-out duration-150"></div>
+      <main className="flex-1">
         <Header />
         <Routes>
           {/* Public routes */}
@@ -38,7 +38,7 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
-    </div>
+    </section>
   )
 }
 

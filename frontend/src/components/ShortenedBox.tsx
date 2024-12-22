@@ -14,7 +14,7 @@ export const Links = () => {
   const createNewSlug = 'Create new slug'
 
   return (
-    <main className="w-full px-4 mx-auto text-black max-w-screen-2xl dark:text-white">
+    <main className="w-full px-4 mx-auto max-w-screen-2xl">
 
       {
         <motion.div

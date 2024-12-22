@@ -4,7 +4,7 @@ import { MessageCircleHeart } from "lucide-react";
 export const Footer = () => {
 
   return (
-    <footer className="w-full py-6 border-t text-neutral-950 dark:text-neutral-100 border-neutral-400 dark:border-neutral-800 md:py-0">
+    <footer className="w-full mt-20 lg:mt-0 md:mt-0 py-6 border-t border-neutral-400 dark:border-neutral-800 md:py-0">
       <div className="container flex flex-col items-center justify-between gap-4 mx-auto md:h-14 md:flex-row">
         <p className="text-md text-muted-foreground">
           © 2024 302foundev. Almost all rights reserved

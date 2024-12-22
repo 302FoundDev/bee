@@ -7,7 +7,7 @@ export const DashboardLayout = () => {
   const location = useLocation()
 
   return (
-    <section className="flex flex-col min-h-full text-black dark:text-white">
+    <section className="flex flex-col min-h-screen text-neutral-950 dark:text-neutral-100">
       <Sidenav pathname={location.pathname} />
       <Outlet />
     </section>

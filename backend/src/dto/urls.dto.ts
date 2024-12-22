@@ -1,4 +1,5 @@
-import { IsString, IsNotEmpty, IsOptional, IsNumber } from 'class-validator'
+/* eslint-disable prettier/prettier */
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator'
 
 export class UrlDto {
   @IsString()
@@ -22,4 +23,10 @@ export class UrlUpdateDto {
   @IsString()
   @IsNotEmpty()
   readonly url: string
+}
+
+export class SlugDeleteDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly slug: string
 }

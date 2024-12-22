@@ -6,10 +6,13 @@ import { useState } from "react";
 import { useSlugs } from "./UseSlugs";
 import { useAuth } from "../context/AuthContext";
 import Loading from "./Loading";
+import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
 
 
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const { filteredSlugs } = useSlugs();
   const { isLoading } = useAuth();
@@ -28,6 +31,24 @@ export const LinkCards = () => {
         toast.error("Error copying to clipboard");
       });
   };
+
+  const handleDelete = async () => {
+
+    setIsDeleting(true)
+
+    try {
+      // await deleteSlug()
+      console.log("Delete slug")
+    }
+
+    catch (error) {
+      console.error(`Error deleting user: ${error}`)
+    } finally {
+      setIsDeleting(false)
+      setIsConfirmingDelete(false)
+    }
+
+  }
 
   if (isLoading) {
     return (
@@ -71,6 +92,7 @@ export const LinkCards = () => {
                     className="p-2 transition-all ease-linear bg-red-700 rounded-md text-neutral-100 hover:bg-red-800"
                     variant="ghost"
                     size="icon"
+                    onClick={() => setIsConfirmingDelete(true)}
                   >
                     <Trash2 className="w-4 h-4" />
                     <span className="sr-only">Delete URL</span>
@@ -114,6 +136,13 @@ export const LinkCards = () => {
           </p>
         </div>
       )}
+
+      <ConfirmingDeleteModal
+        isDeleting={isDeleting}
+        isOpen={isConfirmingDelete}
+        onClose={() => setIsConfirmingDelete(false)}
+        handleDelete={handleDelete}
+      />
     </section>
   );
 };
