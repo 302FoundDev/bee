@@ -58,7 +58,7 @@ export class UsersController {
     }
   }
 
-  @Patch('update-user')
+  @Patch('update-profile')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Update user data' })
   @ApiBody({ type: UpdateUserDto })

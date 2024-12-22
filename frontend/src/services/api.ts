@@ -98,7 +98,7 @@ export const getUserData = async () => {
   }
 }
 
-export const updateUserData = async (data: { name: string, email: string }) => {
+export const updateUserData = async (data: { first_name: string, last_name: string }) => {
   try {
     const response = await fetch(`${BACKEND_URL}/users/update-profile`, {
       method: 'PATCH',
@@ -113,7 +113,9 @@ export const updateUserData = async (data: { name: string, email: string }) => {
       throw new Error('Failed to update user data')
     }
 
-    return await response.json()
+    const responseData = await response.json()
+
+    return responseData;
 
   } catch (error) {
     throw new Error(`Error updating user data: ${error}`)

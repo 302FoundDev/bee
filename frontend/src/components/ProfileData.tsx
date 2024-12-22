@@ -1,41 +1,66 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "./ui/Button"
 import { motion } from "framer-motion"
-import { deleteUser } from "../services/api"
+import { deleteUser, updateUserData } from "../services/api"
 import { useAuth } from "../context/AuthContext"
 import { useState } from "react"
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal"
-import { Save, TriangleAlert } from "lucide-react"
-
+import { Save, TriangleAlert, Loader2 } from "lucide-react"
+import { toast } from "sonner"
 
 export const UserProfileUpdate = () => {
   const { user } = useAuth()
 
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false)
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-
-    alert("Profile update successfully")
+  interface UserProfileUpdateFormElements extends HTMLFormControlsCollection {
+    firstName: HTMLInputElement;
+    lastName: HTMLInputElement;
   }
 
-  const handleDelete = async () => {
+  interface UserProfileUpdateForm extends HTMLFormElement {
+    elements: UserProfileUpdateFormElements;
+  }
 
+  const handleSubmit = async (event: React.FormEvent<UserProfileUpdateForm>) => {
+    event.preventDefault();
+
+    const firstName = event.currentTarget.elements.firstName.value;
+    const lastName = event.currentTarget.elements.lastName.value;
+
+    const response = await updateUserData({
+      first_name: firstName,
+      last_name: lastName,
+    });
+
+    if (!response.ok) {
+      toast.error('Error updating profile');
+      return;
+    }
+
+    toast.success('Profile updated successfully');
+  };
+
+  const handleDelete = async () => {
     setIsDeleting(true)
 
     try {
       await deleteUser()
-      window.location.href = '/signin'
+
+      toast.success("Account deleted successfully. Redirecting...")
+
+      setTimeout(() => {
+        window.location.href = '/signin'
+      }, 2000)
     }
 
     catch (error) {
       console.error(`Error deleting user: ${error}`)
+      toast.error("Error deleting the account")
     } finally {
       setIsDeleting(false)
       setIsConfirmingDelete(false)
     }
-
   }
 
   return (
@@ -144,8 +169,11 @@ export const UserProfileUpdate = () => {
               onClick={() => setIsConfirmingDelete(true)}
               className="flex items-center justify-center w-full gap-2 py-2 mx-0 mt-2 transition ease-linear bg-red-600 rounded-md text-neutral-200 hover:bg-red-700 md:w-48 lg:w-48"
             >
-
-              Delete account
+              {isDeleting ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                "Delete account"
+              )}
             </Button>
           </div>
         </div>
@@ -157,8 +185,6 @@ export const UserProfileUpdate = () => {
         onClose={() => setIsConfirmingDelete(false)}
         handleDelete={handleDelete}
       />
-
     </motion.div>
   )
 }
-

@@ -2,25 +2,37 @@ import { useAuth } from "../context/AuthContext"
 import { Link } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { motion } from "framer-motion"
+import { toast } from "sonner"
 
 export const Signin = () => {
   const { signin } = useAuth()
 
-  const handleSubmit = async (event) => {
+  interface SigninFields {
+    email: string;
+    password: string;
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.target as HTMLFormElement)
 
-    const fields = {
+    const fields: SigninFields = {
       email: formData.get('email') as string,
       password: formData.get('password') as string
     }
 
     try {
       await signin(fields)
+      toast.success('Logged in successfully')
+
+      setTimeout(() => {
+        window.location.replace('/dashboard')
+      }, 2000)
     }
 
     catch (error) {
+      toast.error(`Error logging in: ${error}`)
       console.error(error)
     }
   }

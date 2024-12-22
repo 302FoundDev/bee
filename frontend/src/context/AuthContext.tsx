@@ -47,9 +47,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
-
-      setIsLoading(true)
-
       try {
         const response = await fetch(`${BACKEND_URL}/users/profile`, {
           method: 'GET',
@@ -57,6 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         })
 
         if (!response.ok) {
+          setSession(false)
           throw new Error('Not authenticated')
         }
         const data = await response.json()
@@ -78,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     checkAuth()
   }, [])
 
-  const signin = async (credentials: SigninCredentials, callbackUrl = '/dashboard') => {
+  const signin = async (credentials: SigninCredentials) => {
 
     setIsLoading(true)
 
@@ -98,8 +96,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       setUser(data.data)
       setSession(true)
-
-      window.location.href = callbackUrl
     }
 
     catch (error) {
@@ -112,7 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const signup = async (credentials: SignupCredentials, callbackUrl = '/signin') => {
+  const signup = async (credentials: SignupCredentials) => {
     try {
       const response = await fetch(`${BACKEND_URL}/users/register`, {
         method: 'POST',
@@ -123,11 +119,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const data = await response.json()
 
-      if (!response.ok) throw new Error(data.error || "Error signing up");
+      if (!data.ok) throw new Error(data.error || "Error signing up");
 
       setUser(data.data)
       setSession(true)
-      window.location.replace(callbackUrl)
     }
 
     catch (error) {
@@ -155,7 +150,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       setUser(null)
       setSession(null)
-      window.location.replace('/')
     }
     catch (error) {
       console.error(error)

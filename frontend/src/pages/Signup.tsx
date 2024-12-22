@@ -13,7 +13,7 @@ export const Signup = () => {
     event.preventDefault()
 
     const fields = Object.fromEntries(new FormData(event.currentTarget))
-    const { full_name, email, password } = fields
+    const { full_name, email, password } = fields as { [key: string]: string }
 
     await signup({ full_name, email, password })
   }
