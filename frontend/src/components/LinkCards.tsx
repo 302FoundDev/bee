@@ -8,8 +8,6 @@ import { useAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
 import { deleteSlug } from "../services/api";
-import { set } from "date-fns";
-
 
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
