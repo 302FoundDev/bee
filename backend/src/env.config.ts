@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 process.loadEnvFile();
 
 export const {
