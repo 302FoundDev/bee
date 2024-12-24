@@ -132,7 +132,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
               <textarea
                 name="description"
                 className="w-full h-20 px-4 py-2 mt-1 overflow-auto bg-transparent border rounded-md dark:placeholder:text-neutral-400 border-neutral-300 dark:border-neutral-800"
-                placeholder="Enter a description for your link (optional)"  
+                placeholder="Enter a description for your link (optional)"
               />
             </label>
 
