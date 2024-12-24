@@ -3,27 +3,30 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-// import { PORT } from './env.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule);
 
-  app.use(cookieParser())
+  app.use(cookieParser());
 
   app.enableCors({
-    credentials: true
-  })
+    credentials: true,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('bee')
     .setDescription('The Bee API description')
     .setVersion('1.0')
     .addTag('bee')
-    .build()
+    .build();
 
-  const documentFactory = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('api', app, documentFactory)
+  const documentFactory = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
 
-  await app.listen(8000)
+  const port = process.env.PORT || 8000;
+  await app.listen(port, () => {
+    console.log(`Application is running on: http://localhost:${port}`);
+  });
 }
-bootstrap()
+
+bootstrap();
