@@ -96,7 +96,7 @@ export const DropDownProfile = () => {
               {links.map((link) => (
                 <Link
                   key={link.reference}
-                  to={link.reference}
+                  to={link.to}
                   onClick={closeDrop}
                   className={`${menuItemStyle}`}
                 >

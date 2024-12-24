@@ -5,6 +5,7 @@ import Confetti from 'react-confetti-boom'
 import Loading from "./Loading"
 import { Button } from "../components/ui/Button"
 import { createSlug } from "../services/api"
+import { IconButton } from "./ui/IconButton"
 
 
 interface CreateSlugModalProps {
@@ -107,30 +108,31 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
           </div>
           <form onSubmit={handleSubmit}>
             <label className="flex flex-col mb-6 text-[15px] font dark:text-gray-200">
-              Destination URL:
+              Destination URL*
               <input
                 name="url"
                 type="text"
-                placeholder="https://example.com"
+                placeholder="https://x.com"
                 className="px-4 py-2 mt-1 bg-transparent border rounded-md dark:placeholder:text-neutral-400 border-neutral-300 dark:border-neutral-800"
               />
             </label>
             <label className="flex flex-col text-[15px] mb-6 dark:text-gray-200">
-              Short link (optional):
+              Short link
               <input
                 name="slug"
                 type="text"
-                placeholder="yourCustomLink"
+                placeholder="Slug (optional)"
                 className="px-4 py-2 mt-1 bg-transparent border rounded-md dark:placeholder:text-neutral-400 border-neutral-300 dark:border-neutral-800"
               />
+
             </label>
 
             <label className="text-[15px] dark:text-gray-200">
-              Description:
+              Description
               <textarea
                 name="description"
                 className="w-full h-20 px-4 py-2 mt-1 overflow-auto bg-transparent border rounded-md dark:placeholder:text-neutral-400 border-neutral-300 dark:border-neutral-800"
-                placeholder="Enter a description"
+                placeholder="Enter a description for your link (optional)"  
               />
             </label>
 

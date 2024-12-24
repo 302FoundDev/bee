@@ -6,6 +6,7 @@ import { useState } from "react"
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal"
 import { Save, TriangleAlert, Loader2 } from "lucide-react"
 import { toast, Toaster } from "sonner"
+import { useNavigate } from "react-router-dom"
 
 
 export const UserProfileUpdate = () => {
@@ -13,6 +14,8 @@ export const UserProfileUpdate = () => {
 
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+
+  const navigate = useNavigate()
 
   interface UserProfileUpdateFormElements extends HTMLFormControlsCollection {
     firstName: HTMLInputElement;
@@ -36,15 +39,18 @@ export const UserProfileUpdate = () => {
       });
 
       if (response.status === "success") {
-        toast.success("Profile updated successfully");
-        return response;
-      }
 
-      toast.error("Error updating profile");
+        setTimeout(() => {
+          navigate("/dashboard/settings")
+        }, 2000)
+
+        toast.success("Profile updated successfully. Redirecting...")
+      }
     }
 
     catch (error) {
       console.error(error);
+      toast.error("Error updating the profile")
     }
   };
 
@@ -104,7 +110,7 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    placeholder="John"
+                    placeholder="Elon"
                     autoComplete="given-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
@@ -122,7 +128,7 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    placeholder="Doe"
+                    placeholder="Musk"
                     autoComplete="family-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
