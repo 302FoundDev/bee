@@ -1,0 +1,3 @@
+src/          # Código fuente (ya está compilado en dist/)
+tests/        # Archivos de pruebas unitarias
+node_modules/ # Módulos de Node.js (los instala Vercel automáticamente)
