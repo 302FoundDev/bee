@@ -44,7 +44,7 @@ export const UserProfileUpdate = () => {
           navigate("/dashboard/settings")
         }, 2000)
 
-        toast.success("Profile updated successfully. Redirecting...")
+        toast.success("Profile updated successfully.")
       }
     }
 
@@ -152,7 +152,7 @@ export const UserProfileUpdate = () => {
                     disabled
                   />
                   <span className="flex items-center gap-1 mt-2 text-sm text-red-500 dark:text-red-400">
-                    <TriangleAlert className="text-red-500" />
+                    <TriangleAlert className="text-red-500 w-4 h-4" />
                     You can't change your email address
                   </span>
                 </div>
@@ -185,7 +185,7 @@ export const UserProfileUpdate = () => {
             <Button
               variant="ghost"
               onClick={() => setIsConfirmingDelete(true)}
-              className="flex items-center justify-center w-full gap-2 py-2 mx-0 mt-2 transition ease-linear bg-red-600 rounded-md text-neutral-200 hover:bg-red-700 md:w-48 lg:w-48"
+              className="flex items-center justify-center w-full gap-2 py-1.5 mx-0 mt-2 transition ease-linear bg-red-700 rounded-md text-neutral-200 hover:bg-red-800 md:w-48 lg:w-48"
             >
               {isDeleting ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
