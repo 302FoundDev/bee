@@ -5,8 +5,6 @@ import Confetti from 'react-confetti-boom'
 import Loading from "./Loading"
 import { Button } from "../components/ui/Button"
 import { createSlug } from "../services/api"
-import { IconButton } from "./ui/IconButton"
-
 
 interface CreateSlugModalProps {
   children: React.ReactNode;

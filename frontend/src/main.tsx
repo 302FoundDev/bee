@@ -3,8 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { MotionConfig } from 'framer-motion'
 import App from './App'
-import './index.css'
-
+import './styles/index.css'
 
 createRoot(document.getElementById('root')!).render(
   <Router>

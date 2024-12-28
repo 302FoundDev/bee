@@ -66,7 +66,7 @@ export const ConfirmingDeleteModal = ({
                 {isDeleting ?
                   <div className="flex items-center justify-center space-x-2">
                     <Loading />
-                    Deleting...
+                    Delete
                   </div>
                   :
                   "Delete"}

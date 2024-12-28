@@ -29,6 +29,8 @@ export const DropDownProfile = () => {
     { icon: <Settings />, reference: "Settings", to: "/dashboard/settings" },
   ];
 
+  console.log(isSigningOut);
+
   const handleSignOut = async () => {
     setIsSigningOut(true);
 
