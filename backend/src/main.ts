@@ -10,14 +10,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: (origin, callback) => {
-      const allowedOrigins = ['https://beeslug.vercel.app', 'http://localhost:5173'];
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: process.env.CORS_ORIGIN2,
     credentials: true,
   });
 
@@ -26,7 +19,7 @@ async function bootstrap() {
     .setDescription('The Bee API description')
     .setVersion('1.0')
     .addTag('bee')
-    .addCookieAuth('access_token')
+    .addCookieAuth('access_token', { type: 'http' })
     .build();
 
   const documentFactory = SwaggerModule.createDocument(app, config);
@@ -39,4 +32,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
