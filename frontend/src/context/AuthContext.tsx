@@ -151,7 +151,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(null)
       setSession(null)
     }
-    
+
     catch (error) {
       console.error(error)
       throw error
