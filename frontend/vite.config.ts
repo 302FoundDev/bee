@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: `${import.meta.env.VITE_BACKEND_URL}/urls`,
+        target: `https://bee-api-gps3.onrender.com/urls`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '^/(?!dashboard(/settings)?$|about$|settings$|signin$|signup$)[a-zA-Z0-9_-]+$': {
-        target: `${import.meta.env.VITE_BACKEND_URL}/urls`,
+        target: `https://bee-api-gps3.onrender.com/urls`,
         changeOrigin: true,
         rewrite: (path) => path.replace('/', ''),
       },
