@@ -11,7 +11,8 @@ async function bootstrap() {
 
   app.enableCors({
     credentials: true,
-    origin: [process.env.CORS_ORIGIN, process.env.CORS_ORIGIN2],
+    origin: 'https://beeslug.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
 
   const config = new DocumentBuilder()
