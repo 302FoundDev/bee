@@ -92,6 +92,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!response.ok) {
         setUser(null)
+        setSession(null)
+        setIsLoading(false)
         throw new Error('Error signing in')
       }
       setUser(data.data)
@@ -99,12 +101,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     catch (error) {
+      setIsLoading(false)
       console.error(error)
       throw error
     }
 
     finally {
-      setIsLoading(false)
+      setIsLoading(true)
     }
   }
 
@@ -137,27 +140,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signout = async () => {
 
-    setIsLoading(true)
-
     try {
       const response = await fetch(`${BACKEND_URL}/auth/logout`, {
         method: 'POST',
         credentials: 'include'
       })
 
-      if (!response.ok) {
-        throw new Error('Error signing out')
-      }
+      if (!response.ok) throw new Error('Error signing out')
+
       setUser(null)
       setSession(null)
     }
+    
     catch (error) {
       console.error(error)
       throw error
-    }
-
-    finally {
-      setIsLoading(false)
     }
   }
 

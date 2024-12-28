@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { House, LayoutDashboard, LogOut, Settings, UserCircle } from "lucide-react";
 import Loading from "./Loading";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export const DropDownProfile = () => {
   const { session, isLoading, signout, user } = useAuth();
   const [isDropOpen, setIsDropOpen] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -28,10 +30,25 @@ export const DropDownProfile = () => {
   ];
 
   const handleSignOut = async () => {
+    setIsSigningOut(true);
+
     try {
-      await signout();
-    } catch (error) {
+      await toast.promise(
+        signout(),
+        {
+          loading: "Signing out...",
+          success: "Signed out",
+          error: "Error signing out",
+        }
+      )
+    }
+
+    catch (error) {
       console.error("Error while signing out:", error);
+    }
+
+    finally {
+      setIsSigningOut(false);
     }
   };
 

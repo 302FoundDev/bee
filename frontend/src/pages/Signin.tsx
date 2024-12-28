@@ -2,10 +2,14 @@ import { useAuth } from "../context/AuthContext"
 import { Link } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { motion } from "framer-motion"
-import { toast } from "sonner"
+import { toast, Toaster } from "sonner"
+import { LoaderIcon } from "lucide-react"
+import { useState } from "react"
 
 export const Signin = () => {
   const { signin } = useAuth()
+  const [isSigningIn, setIsSigningIn] = useState(false)
+
 
   interface SigninFields {
     email: string;
@@ -14,6 +18,7 @@ export const Signin = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setIsSigningIn(true)
 
     const formData = new FormData(event.target as HTMLFormElement)
 
@@ -22,23 +27,33 @@ export const Signin = () => {
       password: formData.get('password') as string
     }
 
+    if (!fields.email || !fields.password) {
+      toast.error("Please fill in all fields");
+      setIsSigningIn(false)
+      return;
+    }
+
     try {
       await signin(fields)
-      toast.success('Logged in successfully')
 
-      setTimeout(() => {
-        window.location.replace('/dashboard')
-      }, 2000)
+      window.location.href = '/dashboard'
     }
 
     catch (error) {
-      toast.error(`Error logging in: ${error}`)
+      toast.error(`Error logging in`)
       console.error(error)
+    }
+
+    finally {
+      setIsSigningIn(false)
     }
   }
 
   return (
     <section>
+
+      <Toaster />
+
       <motion.div
         className="flex flex-col items-center justify-center px-6 mx-auto mt-8 lg:mt-24 md:mt-24"
         initial={{ opacity: 0, y: 30 }}
@@ -116,8 +131,19 @@ export const Signin = () => {
                 </a>
               </div>
 
-              <Button variant="gradient" type="submit" className="w-full py-2 text-base rounded-full">
-                Log in to your account
+              <Button variant="gradient" type="submit" className="w-full py-2 text-base rounded-full" disabled={isSigningIn}>
+                {
+                  isSigningIn ?
+                    <div className="flex items-center justify-center gap-1">
+                      <div className="flex items-center duration-100 text-neutral-500 animate-in fade-in-20 dark:text-neutral-400">
+                        <LoaderIcon size={20} className="animate-spin" />
+                      </div>
+                      <span>
+                        Login into your account
+                      </span>
+                    </div> :
+                    <span>Login into your account</span>
+                }
               </Button>
 
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
