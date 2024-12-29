@@ -10,16 +10,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: (origin, callback) => {
-      const allowedOrigins = ['https://beeslug.vercel.app', 'http://localhost:5173'];
-      console.log(`CORS request from origin: ${origin}`);
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.error(`CORS blocked for origin: ${origin}`);
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: ['https://beeslug.vercel.app', 'https://localhost:5173'],
     credentials: true,
   });
 
