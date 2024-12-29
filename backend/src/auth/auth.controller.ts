@@ -31,8 +31,8 @@ export class AuthController {
       return res.cookie('access_token', user.access_token, {
         httpOnly: true,
         maxAge: 7200000,
-        secure: true,
-        sameSite: 'strict',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'none',
       }).json({ status: 'success', message: 'User logged in successfully' })
 
     }
