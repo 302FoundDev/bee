@@ -6,13 +6,12 @@ export default defineConfig({
   // server: {
   //   proxy: {
   //     '/api': {
-  //       target: process.env.VITE_BACKEND_URL ? `https://bee-api-gps3.onrender.com/urls` : 'https://bee-api-gps3.onrender.com/urls',
+  //       target: process.env.VITE_BACKEND_URL ? `bee-api-backend.vercel.app/urls` : 'bee-api-backend.vercel.app/urls',
   //       changeOrigin: true,
   //       rewrite: (path) => path.replace(/^\/api/, ''),
   //     },
   //     '^/(?!dashboard(/settings)?$|about$|settings$|signin$|signup$)[a-zA-Z0-9_-]+$': {
-  //       target: 'https://bee-api-gps3.onrender.com/urls',
-  //       target: process.env.VITE_BACKEND_URL ? `https://bee-api-gps3.onrender.com/urls` : 'https://bee-api-gps3.onrender.com/urls',
+  //       target: process.env.VITE_BACKEND_URL ? `bee-api-backend.vercel.app/urls` : 'bee-api-backend.vercel.app/urls',
   //       changeOrigin: true,
   //       rewrite: (path) => path.replace('/', ''),
   //     },
