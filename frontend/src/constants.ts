@@ -10,5 +10,5 @@ declare global {
 }
 
 // vite.config.ts
-export const BACKEND_URL = `https://bee-api-gps3.onrender.com`;
-export const FRONTEND_URL = `https://beeslug.vercel.app`;
+export const BACKEND_URL = 'https://bee-api-gps3.onrender.com';
+export const FRONTEND_URL = 'https://beeslug.vercel.app';
