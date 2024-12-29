@@ -10,6 +10,7 @@ export const Signin = () => {
   const { signin } = useAuth()
   const [isSigningIn, setIsSigningIn] = useState(false)
 
+  console.log('entrando al signin')
 
   interface SigninFields {
     email: string;
@@ -36,7 +37,8 @@ export const Signin = () => {
     try {
       await signin(fields)
 
-      window.location.href = '/dashboard'
+      console.log('Ya estas en el try')
+      // window.location.href = '/dashboard'
     }
 
     catch (error) {

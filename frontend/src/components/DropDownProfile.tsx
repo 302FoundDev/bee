@@ -9,7 +9,6 @@ import { toast } from "sonner";
 export const DropDownProfile = () => {
   const { session, isLoading, signout, user } = useAuth();
   const [isDropOpen, setIsDropOpen] = useState(false);
-  const [isSigningOut, setIsSigningOut] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -29,10 +28,8 @@ export const DropDownProfile = () => {
     { icon: <Settings />, reference: "Settings", to: "/dashboard/settings" },
   ];
 
-  console.log(isSigningOut);
 
   const handleSignOut = async () => {
-    setIsSigningOut(true);
 
     try {
       await toast.promise(
@@ -49,9 +46,6 @@ export const DropDownProfile = () => {
       console.error("Error while signing out:", error);
     }
 
-    finally {
-      setIsSigningOut(false);
-    }
   };
 
   if (isLoading) return <Loading />;
