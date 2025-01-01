@@ -6,7 +6,7 @@
     },
     {
       "source": "/:slug",
-      "destination": "https://bee-api-backend.vercel.app/urls/:slug"
+      "destination": "https://bee-api-gps3.onrender.com/urls/:slug"
     }
   ]
 }
