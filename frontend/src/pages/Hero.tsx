@@ -59,7 +59,7 @@ export const Hero = () => {
             className="w-full border rounded-full dark:border-neutral-100 border-neutral-800 text-neutral-950 dark:text-neutral-100 sm:w-auto py-1.5 hover:scale-105 transition ease-linear"
           >
             <a
-              href="https://github.com/302foundev/bee"
+              href="https://github.com/302FoundDev/bee"
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-1"
