@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/(dashboard|dashboard/settings|about|signin|signup|settings)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/:slug",
+      "destination": "https://bee-api-backend.vercel.app/urls/:slug"
+    }
+  ]
+}
