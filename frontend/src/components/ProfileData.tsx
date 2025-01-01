@@ -176,7 +176,7 @@ export const UserProfileUpdate = () => {
                         <Loader2 className="w-5 h-5 animate-spin" />
                         <span>Updating...</span>
                       </div> :
-                      <div>
+                      <div className="flex items-center gap-1">
                         <Save className="w-5 h-5" />
                         <span>Save changes</span>
                       </div>
