@@ -8,7 +8,7 @@ export default defineConfig({
       '^/(?!dashboard(/settings)?$|about$|settings$|signin$|signup$|dashboard$)[a-zA-Z0-9_-]+$': {
         target: 'https://bee-api-gps3.onrender.com/urls',
         changeOrigin: true,
-        rewrite: (path) => path.replace('/', ''),
+        rewrite: (path) => path.replace(/^\/+/, ''),
       },
     },
   },
