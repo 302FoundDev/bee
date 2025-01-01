@@ -10,8 +10,6 @@ export const Signin = () => {
   const { signin } = useAuth()
   const [isSigningIn, setIsSigningIn] = useState(false)
 
-  console.log('entrando al signin')
-
   interface SigninFields {
     email: string;
     password: string;
@@ -36,9 +34,9 @@ export const Signin = () => {
 
     try {
       await signin(fields)
+      toast.success(`Welcome back! 🎉`)
 
-      console.log('Ya estas en el try')
-      // window.location.href = '/dashboard'
+      window.location.replace("/dashboard")
     }
 
     catch (error) {
