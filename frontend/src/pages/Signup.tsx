@@ -4,18 +4,37 @@ import { Button } from "../components/ui/Button"
 import { useAuth } from "../context/AuthContext"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useState } from "react"
+import { toast } from "sonner"
+import { LoaderIcon } from "lucide-react"
 
 
 export const Signup = () => {
   const { session, signup } = useAuth()
+  const [isSigningUp, setIsSigningUp] = useState(false)
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
+    setIsSigningUp(true)
 
     const fields = Object.fromEntries(new FormData(event.currentTarget))
     const { full_name, email, password } = fields as { [key: string]: string }
 
-    await signup({ full_name, email, password })
+    try {
+      await signup({ full_name, email, password })
+      toast.success(`Welcome to Bee! 🎉`)
+
+      window.location.replace("/dashboard")
+    }
+
+    catch (error) {
+      toast.error(`Error signing up`)
+      console.error(error)
+    }
+
+    finally {
+      setIsSigningUp(false)
+    }
   }
 
   if (session) {
@@ -108,31 +127,20 @@ export const Signup = () => {
                   required
                 />
               </div>
-              <div className="flex items-center space-x-2">
-                <div>
-                  <input type="checkbox"
-                    id="terms"
-                    name="terms"
-                    className="w-4 bg-transparent border rounded border-neutral-200 h-14 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-neutral-800 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="terms"
-                    className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
-                  >
-                    I agree to the{" "}
-                    <a
-                      href="/terms"
-                      className="font-medium text-blue-500 hover:underline"
-                    >
-                      Terms and Conditions
-                    </a>
-                  </label>
-                </div>
-              </div>
+
               <Button variant="gradient" type="submit" className="w-full py-2 text-base rounded-full">
-                Create your account
+                {
+                  isSigningUp ?
+                    <div className="flex items-center justify-center gap-1">
+                      <div className="flex items-center duration-100 text-neutral-500 animate-in fade-in-20 dark:text-neutral-400">
+                        <LoaderIcon size={20} className="animate-spin" />
+                      </div>
+                      <span>
+                        Create your account
+                      </span>
+                    </div> :
+                    <span>Create your account</span>
+                }
               </Button>
 
               <p className="text-sm font-light text-transparent0 dark:text-gray-400">
