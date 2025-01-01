@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '^/(?!dashboard(/settings)?$|about$|settings$|signin$|signup$|dashboard$)[a-zA-Z0-9_-]+$': {
-        target: 'bee-api-backend.vercel.app/urls',
+        target: 'https://bee-api-gps3.onrender.com/urls',
         changeOrigin: true,
         rewrite: (path) => path.replace('/', ''),
       },
