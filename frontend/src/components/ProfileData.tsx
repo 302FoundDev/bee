@@ -14,6 +14,7 @@ export const UserProfileUpdate = () => {
 
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const navigate = useNavigate()
 
@@ -28,6 +29,7 @@ export const UserProfileUpdate = () => {
 
   const handleSubmit = async (event: React.FormEvent<UserProfileUpdateForm>) => {
     event.preventDefault();
+    setIsUpdating(true);
 
     const firstName = event.currentTarget.elements.firstName.value;
     const lastName = event.currentTarget.elements.lastName.value;
@@ -51,6 +53,10 @@ export const UserProfileUpdate = () => {
     catch (error) {
       console.error(error);
       toast.error("Error updating the profile")
+    }
+
+    finally {
+      setIsUpdating(false)
     }
   };
 
@@ -164,8 +170,17 @@ export const UserProfileUpdate = () => {
                   size="lg"
                   className="flex items-center gap-2 text-white rounded-md"
                 >
-                  <Save className="w-5 h-5" />
-                  Save
+                  {
+                    isUpdating ?
+                      <div className="flex items-center gap-1">
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Updating...</span>
+                      </div> :
+                      <div>
+                        <Save className="w-5 h-5" />
+                        <span>Save changes</span>
+                      </div>
+                  }
                 </Button>
               </div>
             </form>
