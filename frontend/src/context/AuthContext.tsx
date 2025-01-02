@@ -25,7 +25,6 @@ interface SignupCredentials {
 
 interface AuthContextType {
   user: { id: number, email: string, first_name: string, last_name: string, urls: UserUrl[] } | null;
-  session: boolean | null;
   isLoading: boolean;
   signin: (credentials: SigninCredentials) => Promise<void>;
   signup: (credentials: SignupCredentials, callbackUrl?: string) => Promise<void>;
@@ -42,7 +41,6 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState(null)
-  const [session, setSession] = useState<boolean | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -53,18 +51,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           credentials: 'include'
         })
 
-        if (!response.ok) {
-          setSession(false)
-          throw new Error('Not authenticated')
+        if (response.ok) {
+          const data = await response.json()
+          setUser(data.data)
         }
-        const data = await response.json()
-        setSession(true)
-        setUser(data.user)
+
+        else {
+          setUser(null)
+        }
+
       }
 
       catch (error) {
-        console.error(error)
-        setSession(null)
+        console.error('Error fetching user:', error);
         setUser(null)
       }
 
@@ -92,12 +91,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!response.ok) {
         setUser(null)
-        setSession(null)
         setIsLoading(false)
         throw new Error('Error signing in')
       }
+
       setUser(data.data)
-      setSession(true)
     }
 
     catch (error) {
@@ -123,9 +121,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await response.json()
 
       if (!data.ok) throw new Error(data.error || "Error signing up");
-
-      setUser(data.data)
-      setSession(true)
     }
 
     catch (error) {
@@ -149,7 +144,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!response.ok) throw new Error('Error signing out')
 
       setUser(null)
-      setSession(null)
     }
 
     catch (error) {
@@ -159,7 +153,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, session, signin, signup, signout, isLoading }}>
+    <AuthContext.Provider value={{ user, signin, signup, signout, isLoading }}>
       {children}
     </AuthContext.Provider>
   )

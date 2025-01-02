@@ -25,7 +25,7 @@ export const Links = () => {
         >
           <div className="flex flex-col items-start justify-between w-full gap-8 mb-8 lg:gap-0 lg:flex-row">
 
-            <InputSearch placeholder="Search slug" onSearch={handleSearch} />
+            <InputSearch onSearch={handleSearch} />
 
             <CreateSlugModal children={createLink} />
 

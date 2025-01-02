@@ -6,7 +6,7 @@ interface InputSearchProps {
   onSearch: (term: string) => void
 }
 
-export const InputSearch = ({ placeholder = "Search...", onSearch }: InputSearchProps) => {
+export const InputSearch = ({ placeholder = "Search slug", onSearch }: InputSearchProps) => {
   const [searchTerm, setSearchTerm] = useState("")
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
