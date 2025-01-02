@@ -9,10 +9,9 @@ export const ProtectedRoute = () => {
   }
 
   if (!user) {
-    window.location.replace('/signin')
+    window.location.href = '/signin';
     return null;
   }
 
   return <Outlet />;
-
 }
