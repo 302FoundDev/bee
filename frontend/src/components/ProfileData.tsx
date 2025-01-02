@@ -110,7 +110,7 @@ export const UserProfileUpdate = () => {
                     htmlFor="firstName"
                     className="block font-medium dark:text-neutral-200"
                   >
-                    Your name
+                    Your Name
                   </label>
                   <input
                     type="text"
@@ -146,7 +146,7 @@ export const UserProfileUpdate = () => {
                     htmlFor="email"
                     className="block font-medium"
                   >
-                    Email address
+                    Email Address
                   </label>
                   <input
                     type="email"
