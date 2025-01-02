@@ -53,7 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (response.ok) {
           const data = await response.json()
-          setUser(data.data)
+          setUser(data.user)
         }
 
         else {
@@ -87,15 +87,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         credentials: 'include'
       })
 
-      const data = await response.json()
+      if (response.ok) {
+        const data = await response.json()
 
-      if (!response.ok) {
-        setUser(null)
-        setIsLoading(false)
-        throw new Error('Error signing in')
+        setUser(data.user)
       }
 
-      setUser(data.data)
+      else {
+        setUser(null)
+      }
     }
 
     catch (error) {

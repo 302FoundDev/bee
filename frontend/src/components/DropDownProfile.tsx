@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 
 export const DropDownProfile = () => {
-  const { session, isLoading, signout, user } = useAuth();
+  const { isLoading, signout, user } = useAuth();
   const [isDropOpen, setIsDropOpen] = useState(false);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export const DropDownProfile = () => {
 
   return (
     <>
-      {session ? (
+      {user ? (
         <div className="relative flex">
           <button className="relative z-10" onClick={openDrop}>
             <UserCircle className="size-7" />
