@@ -178,7 +178,7 @@ export const UserProfileUpdate = () => {
                       </div> :
                       <div className="flex items-center gap-1">
                         <Save className="w-5 h-5" />
-                        <span>Save changes</span>
+                        <span>Save Changes</span>
                       </div>
                   }
                 </Button>
