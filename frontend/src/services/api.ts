@@ -33,28 +33,26 @@ export const createSlug = async (url: string, slug: string, description: string)
 
 export const deleteSlug = async (slug: string) => {
   try {
-    const response = await fetch(`${BACKEND_URL}/urls/delete-slug`, {
+    const response = await fetch(`${BACKEND_URL}/urls/delete-slug/${slug}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ slug }),
       credentials: 'include',
     })
 
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.message || 'Failed to delete slug')
+    if (response.ok) {
+      toast.success('Slug deleted successfully')
+      return await response.json()
     }
 
-    const data = await response.json()
-    toast.success('Slug deleted successfully')
-    return data
-
+    const errorData = await response.json()
+    throw new Error(errorData.message || 'Failed to delete slug')
   }
 
   catch (error) {
     console.error(error)
+
     toast.error(`Error deleting slug: ${error}`)
     throw error
   }

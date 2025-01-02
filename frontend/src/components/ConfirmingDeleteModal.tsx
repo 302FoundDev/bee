@@ -18,15 +18,15 @@ export const ConfirmingDeleteModal = ({
   return (
     <Transition
       show={isOpen}
-      enter="transition-opacity ease-linear duration-200"
+      enter="transition-opacity ease-linear duration-100"
       enterFrom="opacity-0"
       enterTo="opacity-100"
-      leave="transition-opacity ease-linear duration-200"
+      leave="transition-opacity ease-linear duration-100"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
       <div
-        className="fixed inset-0 z-10 bg-black bg-opacity-50 text-neutral-950 dark:text-neutral-100"
+        className="fixed inset-0 z-10 bg-neutral-950/30 text-neutral-950 dark:text-neutral-100"
         role="dialog"
         aria-modal="true"
       >
@@ -46,7 +46,7 @@ export const ConfirmingDeleteModal = ({
 
             {/* Descripción */}
             <p className="mt-2 text-sm text-center text-gray-700 dark:text-gray-400">
-              Are you sure you want to delete your account? This action cannot
+              Are you sure you want to do this action? This action cannot
               be undone.
             </p>
 
