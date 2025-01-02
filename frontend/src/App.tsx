@@ -13,7 +13,7 @@ import { ProtectedRoute } from "./middleware/routes"
 const App = () => {
   return (
     <section
-      className="flex flex-col min-h-screen text-black bg-neutral-100 dark:bg-neutral-950/30 dark:text-neutral-100 transition-all ease-in-out duration-150"
+      className="flex flex-col min-h-screen text-black bg-neutral-100 dark:bg-neutral-950 dark:text-neutral-100 transition-all ease-in-out duration-150"
     >
       <div className="absolute top-0 z-[-2] min-h-screen min-w-screen transition-all ease-in-out duration-150"></div>
       <main className="flex-1">
