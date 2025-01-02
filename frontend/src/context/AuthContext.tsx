@@ -40,7 +40,7 @@ export const useAuth = () => {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<AuthContextType["user"]>(JSON.parse(localStorage.getItem("user") || "null"));
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -54,10 +54,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (response.ok) {
           const data = await response.json()
           setUser(data.user)
+          localStorage.setItem("user", JSON.stringify(data.user));
         }
 
         else {
           setUser(null)
+          localStorage.removeItem("user");
         }
 
       }
@@ -65,6 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       catch (error) {
         console.error('Error fetching user:', error);
         setUser(null)
+        localStorage.removeItem("user");
       }
 
       finally {
@@ -149,6 +152,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!response.ok) throw new Error('Error signing out')
 
       setUser(null)
+      localStorage.removeItem("user");
     }
 
     catch (error) {
