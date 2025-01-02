@@ -10,7 +10,7 @@ import { LoaderIcon } from "lucide-react"
 
 
 export const Signup = () => {
-  const { session, signup } = useAuth()
+  const { user, signup } = useAuth()
   const [isSigningUp, setIsSigningUp] = useState(false)
 
   const handleSubmit = async (event: any) => {
@@ -37,7 +37,7 @@ export const Signup = () => {
     }
   }
 
-  if (session) {
+  if (user) {
     return <Navigate to="/dashboard" />
   }
 
