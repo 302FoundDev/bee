@@ -45,6 +45,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
+      if (user) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const response = await fetch(`${BACKEND_URL}/users/profile`, {
           method: 'GET',
