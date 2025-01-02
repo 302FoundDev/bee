@@ -5,13 +5,25 @@ import { LinkCards } from "./LinkCards"
 import { InputSearch } from "./ui/InputSearch"
 import { Toaster } from "sonner"
 import { useSlugs } from "./UseSlugs"
+import Loading from "./Loading"
 
 export const Links = () => {
-  const { user } = useAuth()
+  const { user, isLoading } = useAuth()
   const { handleSearch } = useSlugs()
 
   const createLink = 'Create link'
   const createNewSlug = 'Create new slug'
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full h-8">
+        <p className="text-lg text-neutral-600 dark:text-neutral-400">
+          <Loading />
+          Loading...
+        </p>
+      </div>
+    )
+  }
 
   return (
     <main className="w-full px-4 mx-auto max-w-screen-2xl">
@@ -24,15 +36,12 @@ export const Links = () => {
           transition={{ duration: 0.4, ease: "linear" }}
         >
           <div className="flex flex-col items-start justify-between w-full gap-8 mb-8 lg:gap-0 lg:flex-row">
-
             <InputSearch onSearch={handleSearch} />
-
             <CreateSlugModal children={createLink} />
-
           </div>
 
           {
-            user?.urls.length === 0 ? (
+            user?.urls?.length === 0 ? (
               <div className="flex flex-col items-center mt-16">
                 <div>
                   <img

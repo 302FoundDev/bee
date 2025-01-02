@@ -4,8 +4,6 @@ import { IconButton } from "./ui/IconButton";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useSlugs } from "./UseSlugs";
-import { useAuth } from "../context/AuthContext";
-import Loading from "./Loading";
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
 import { deleteSlug } from "../services/api";
 
@@ -16,7 +14,6 @@ export const LinkCards = () => {
   const [slugToDelete, setSlugToDelete] = useState<string | null>(null)
 
   const { filteredSlugs } = useSlugs();
-  const { isLoading } = useAuth();
 
   const handleCopy = (slug: string) => {
     navigator.clipboard
@@ -55,17 +52,6 @@ export const LinkCards = () => {
       setSlugToDelete(null);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center w-full h-8">
-        <p className="text-lg text-neutral-600 dark:text-neutral-400">
-          <Loading />
-          Loading...
-        </p>
-      </div>
-    );
-  }
 
   return (
     <section className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

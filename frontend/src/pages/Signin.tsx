@@ -36,7 +36,7 @@ export const Signin = () => {
       await signin(fields)
       toast.success(`Welcome back! 🎉`)
 
-      window.location.replace("/dashboard")
+      window.location.href = "/dashboard"
     }
 
     catch (error) {
