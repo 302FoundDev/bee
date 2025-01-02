@@ -28,6 +28,7 @@ export const Links = () => {
             <InputSearch placeholder="Search slug" onSearch={handleSearch} />
 
             <CreateSlugModal children={createLink} />
+
           </div>
 
           {

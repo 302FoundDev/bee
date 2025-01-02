@@ -17,7 +17,7 @@ export const InputSearch = ({ placeholder = "Search...", onSearch }: InputSearch
 
   return (
     <div className="relative flex items-center w-full max-w-md">
-      <Search className="absolute mx-2 text-gray-500 dark:text-gray-400" />
+      <Search className="absolute w-5 h-5 mx-2 text-gray-500 dark:text-gray-400" />
       <input
         type="search"
         placeholder={placeholder}
