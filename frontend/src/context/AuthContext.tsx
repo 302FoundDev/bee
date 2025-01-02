@@ -76,7 +76,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const signin = async (credentials: SigninCredentials) => {
-
     setIsLoading(true)
 
     try {
@@ -89,12 +88,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (response.ok) {
         const data = await response.json()
-
         setUser(data.user)
       }
 
       else {
         setUser(null)
+        const error = await response.json();
+        throw new Error(error.message || "Failed to sign in");
       }
     }
 
@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     finally {
-      setIsLoading(true)
+      setIsLoading(false)
     }
   }
 
@@ -118,9 +118,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         credentials: 'include'
       })
 
-      const data = await response.json()
+      if (response.ok) {
+        const data = await response.json()
 
-      if (!data.ok) throw new Error(data.error || "Error signing up");
+        return data.message
+      }
+
+      const error = await response.json();
+      throw new Error(error.message || "Failed to sign up");
     }
 
     catch (error) {
