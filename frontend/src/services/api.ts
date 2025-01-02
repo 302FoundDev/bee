@@ -35,9 +35,6 @@ export const deleteSlug = async (slug: string) => {
   try {
     const response = await fetch(`${BACKEND_URL}/urls/delete-slug/${slug}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       credentials: 'include',
     })
 

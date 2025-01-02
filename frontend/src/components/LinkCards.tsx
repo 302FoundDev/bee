@@ -33,6 +33,8 @@ export const LinkCards = () => {
   const handleDelete = async () => {
     if (!slugToDelete) return;
 
+    console.log(`Deleting slug: ${slugToDelete}`);
+
     setIsDeleting(true);
 
     try {
@@ -127,7 +129,7 @@ export const LinkCards = () => {
               isDeleting={isDeleting}
               isOpen={isConfirmingDelete}
               onClose={() => setIsConfirmingDelete(false)}
-              handleDelete={handleDelete}
+              handleDelete={() => handleDelete()}
             />
 
           </div>
