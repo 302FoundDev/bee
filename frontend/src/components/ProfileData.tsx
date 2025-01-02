@@ -102,7 +102,9 @@ export const UserProfileUpdate = () => {
               Modify your personal information:
             </p>
           </div>
+
           <div>
+
             <form onSubmit={handleSubmit} className="px-4 py-5 sm:p-6">
               <div className="grid grid-cols-3 gap-6">
                 <div className="col-span-6 sm:col-span-4">
@@ -178,12 +180,14 @@ export const UserProfileUpdate = () => {
                       </div> :
                       <div className="flex items-center gap-1">
                         <Save className="w-5 h-5" />
-                        <span>Save Changes</span>
+                        <span>Save changes</span>
                       </div>
                   }
                 </Button>
               </div>
+
             </form>
+
           </div>
         </div>
 
