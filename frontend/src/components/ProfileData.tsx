@@ -116,7 +116,7 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="firstName"
                     id="firstName"
-                    placeholder="Elon"
+                    placeholder={user?.first_name}
                     autoComplete="given-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
@@ -134,7 +134,7 @@ export const UserProfileUpdate = () => {
                     type="text"
                     name="lastName"
                     id="lastName"
-                    placeholder="Musk"
+                    placeholder={user?.last_name}
                     autoComplete="family-name"
                     className="w-full px-4 py-2 mt-1 bg-transparent border rounded-md border-neutral-200 dark:border-neutral-800"
                     required
@@ -203,9 +203,12 @@ export const UserProfileUpdate = () => {
               className="flex items-center justify-center w-full gap-2 py-1.5 mx-0 mt-2 transition ease-linear bg-red-700 rounded-md text-neutral-200 hover:bg-red-800 md:w-48 lg:w-48"
             >
               {isDeleting ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <div className="flex items-center gap-1">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Deleting...</span>
+                </div>
               ) : (
-                "Delete account"
+                <span>Delete account</span>
               )}
             </Button>
           </div>
