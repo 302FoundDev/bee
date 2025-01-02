@@ -42,7 +42,7 @@ export const Header = () => {
                   className="flex transition ease-in-out rounded-full hover:scale-105 p-1.5 hover:bg-zinc-800"
                   target="_blank"
                   rel="noopener"
-                  href="https://github.com/LaCocinaDePapa/beely"
+                  href="https://github.com/302FoundDev"
                 >
                   <Github className="flex size-5" />
                 </a>
