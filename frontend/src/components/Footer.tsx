@@ -1,5 +1,4 @@
-import { MessageCircleHeart } from "lucide-react";
-
+import { AtSign } from "lucide-react"
 
 export const Footer = () => {
 
@@ -13,10 +12,9 @@ export const Footer = () => {
           href="https://bluesky.com/302foundev"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center space-x-1 transition ease-linear hover:opacity-90"
+          className="transition ease-linear hover:opacity-90"
         >
-          <MessageCircleHeart className="w-5 h-5 text-sky-400" />
-          <span className="text-md text-muted-foreground">BlueSky</span>
+          <span className="text-md text-muted-foreground flex items-center justify-center"><AtSign className="size-4" />blueSky</span>
         </a>
       </div>
     </footer>
