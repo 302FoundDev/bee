@@ -6,7 +6,7 @@
     },
     {
       "source": "/:slug",
-      "destination": "https://bee-api-gps3.onrender.com/urls/:slug"
+      "destination": "${env:API_URL}/urls/:slug"
     }
   ]
 }
