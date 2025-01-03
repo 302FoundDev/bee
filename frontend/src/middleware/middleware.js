@@ -1,7 +1,7 @@
 import { BACKEND_URL } from '../constants';
 import { NextResponse } from 'next/server';
 
-export function middleware(request: Request) {
+export function middleware(request) {
   const url = new URL(request.url);
 
   const excludedPaths = [
