@@ -1,9 +1,12 @@
 {
-  "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/:slug",
-      "dest": "/middleware.js"
+      "source": "/(dashboard|dashboard/settings|about|signin|signup|settings)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/:slug",
+      "destination": "https://bee-api-gps3.onrender.com/urls/:slug"
     }
   ]
 }
