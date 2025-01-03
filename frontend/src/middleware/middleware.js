@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 export function middleware(request) {
   const url = new URL(request.url);
 
+  console.log(BACKEND_URL)
+
   const excludedPaths = [
     '/dashboard',
     '/dashboard/settings',
