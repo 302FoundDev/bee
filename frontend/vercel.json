@@ -1,7 +1,3 @@
 {
-  "middleware": [
-    {
-      "source": "/:slug"
-    }
-  ]
+  "version": 2
 }
