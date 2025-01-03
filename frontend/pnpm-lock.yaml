@@ -23,9 +23,6 @@ importers:
       framer-motion:
         specifier: ^11.11.17
         version: 11.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      jwt-decode:
-        specifier: ^4.0.0
-        version: 4.0.0
       lucide-react:
         specifier: ^0.461.0
         version: 0.461.0(react@18.3.1)
