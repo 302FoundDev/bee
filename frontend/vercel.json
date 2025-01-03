@@ -1,12 +1,7 @@
 {
-  "rewrites": [
+  "middleware": [
     {
-      "source": "/(dashboard|dashboard/settings|about|signin|signup|settings)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/:slug",
-      "destination": "${env:API_URL}/urls/:slug"
+      "source": "/:slug"
     }
   ]
 }
