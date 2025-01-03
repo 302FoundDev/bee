@@ -1,4 +1,5 @@
-![no cap](https://github.com/user-attachments/assets/23f3c50a-a622-41ad-8126-a56530b7d8f1)
+
+<img width="1295" alt="no cap" src="https://github.com/user-attachments/assets/88253c70-e8f3-47f1-89ee-32b64d0a90c5" />
 
 
 #Dashboard
