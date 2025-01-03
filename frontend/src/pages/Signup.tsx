@@ -18,10 +18,10 @@ export const Signup = () => {
     setIsSigningUp(true)
 
     const fields = Object.fromEntries(new FormData(event.currentTarget))
-    const { full_name, email, password } = fields as { [key: string]: string }
+    const { first_name, last_name, email, password } = fields as { [key: string]: string }
 
     try {
-      await signup({ full_name, email, password })
+      await signup({ first_name, last_name, email, password })
       toast.success(`Welcome to Bee! 🎉`)
 
       window.location.replace("/dashboard")
@@ -68,12 +68,28 @@ export const Signup = () => {
                   htmlFor="name"
                   className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
-                  Full name
+                  First Name
                 </label>
                 <input
                   type="text"
-                  name="full_name"
-                  id="name"
+                  name="first_name"
+                  id="first_name"
+                  className={commonStyles}
+                  placeholder="Full name"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="last_name"
+                  id="last_name"
                   className={commonStyles}
                   placeholder="Full name"
                   required
@@ -84,7 +100,7 @@ export const Signup = () => {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
-                  Your email
+                  Your Email
                 </label>
                 <input
                   type="email"
@@ -116,7 +132,7 @@ export const Signup = () => {
                   htmlFor="confirmPassword"
                   className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                 >
-                  Confirm password
+                  Confirm Password
                 </label>
                 <input
                   type="password"
