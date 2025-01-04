@@ -38,14 +38,18 @@ export const LinkCards = () => {
     setIsDeleting(true);
 
     try {
-      await deleteSlug(slugToDelete);
-      toast.success("Slug deleted successfully");
+      const deleteData = await deleteSlug(slugToDelete);
+
+      if (deleteData) {
+        toast.success("Slug deleted successfully");
+
+        return deleteData;
+      }
     }
 
     catch (error) {
       console.error(`Error deleting slug: ${error}`);
-      toast.error(`Failed to delete slug: ${error || 'An unexpected error occurred'}`);
-
+      toast.error(`Failed to delete slug`);
     }
 
     finally {
@@ -129,7 +133,7 @@ export const LinkCards = () => {
               isDeleting={isDeleting}
               isOpen={isConfirmingDelete}
               onClose={() => setIsConfirmingDelete(false)}
-              handleDelete={() => handleDelete()}
+              handleDelete={handleDelete}
             />
 
           </div>

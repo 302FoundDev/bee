@@ -12,19 +12,12 @@ export const createSlug = async (url: string, slug: string, description: string)
       body: JSON.stringify({ url, slug, description })
     })
 
-    if (!response.ok) {
-      throw new Error('Failed to create slug')
+    if (response.ok) {
+      return await response.json()
     }
 
-    const data = await response.json()
-
-    if (!data.success) {
-      throw new Error(data.message)
-    }
-
-    toast.success('Slug created successfully')
-
-    return data
+    const errorData = await response.json()
+    throw new Error(errorData.message || 'Failed to create slug')
 
   } catch (error) {
     throw new Error(`Error shortening URL: ${error}`)
@@ -39,7 +32,6 @@ export const deleteSlug = async (slug: string) => {
     })
 
     if (response.ok) {
-      toast.success('Slug deleted successfully')
       return await response.json()
     }
 
