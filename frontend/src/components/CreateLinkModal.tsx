@@ -78,7 +78,7 @@ export const CreateSlugModal = () => {
 
             {/* Modal */}
             <motion.div
-              className="relative border mx-auto left-0 right-0 rounded-lg h-[500px] max-w-screen-sm sm:w-auto text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 z-20"
+              className="absolute border w-full max-w-lg mx-auto z-30 left-0 right-0 rounded-lg text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 shadow-lg"
               initial={{ opacity: 0, y: -50, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 50, scale: 0.5 }}
