@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import { House, LayoutDashboard, LogOut, Settings, UserCircle } from "lucide-react";
-import Loading from "./Loading";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
 export const DropDownProfile = () => {
-  const { isLoading, signout, user } = useAuth();
+  const { signout, user } = useAuth();
   const [isDropOpen, setIsDropOpen] = useState(false);
 
   useEffect(() => {
@@ -41,8 +40,6 @@ export const DropDownProfile = () => {
     }
 
   };
-
-  if (isLoading) return <Loading />;
 
   const menuItemStyle =
     "flex gap-1.5 items-center cursor-default px-1 py-2 text-sm font-semibold rounded text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-slate-800";
