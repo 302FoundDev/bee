@@ -7,6 +7,7 @@ import { useSlugs } from "./UseSlugs";
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
 import { deleteSlug } from "../services/api";
 
+
 export const LinkCards = () => {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
@@ -39,8 +40,6 @@ export const LinkCards = () => {
 
       if (deleteData) {
         toast.success("Slug deleted successfully");
-
-        return deleteData;
       }
     }
 

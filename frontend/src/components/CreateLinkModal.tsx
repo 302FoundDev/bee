@@ -7,11 +7,8 @@ import { Button } from "../components/ui/Button";
 import { createSlug } from "../services/api";
 import { toast } from "sonner";
 
-interface CreateSlugModalProps {
-  children: React.ReactNode;
-}
 
-export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) => {
+export const CreateSlugModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -61,7 +58,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
         onClick={openModal}
       >
         <GitBranchPlus className="w-5 h-5" />
-        {children}
+        <span>Create new slug</span>
       </Button>
 
       <AnimatePresence>
@@ -69,7 +66,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
           <>
             {/* Overlay */}
             <motion.div
-              className="fixed inset-0 z-10 bg-neutral-900/50 dark:bg-neutral-950/80"
+              className="fixed inset-0 z-20 bg-neutral-900/30 dark:bg-neutral-950/80"
               role="dialog"
               aria-modal="true"
               initial={{ scale: 0.9, opacity: 0 }}
@@ -81,7 +78,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
             {/* Modal */}
             <motion.div
-              className="absolute border mx-auto left-0 right-0 rounded-lg h-[500px] max-w-screen-sm sm:w-auto text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 z-20"
+              className="relative border mx-auto left-0 right-0 rounded-lg h-[500px] max-w-screen-sm sm:w-auto text-neutral-950 font-medium p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 z-20"
               initial={{ opacity: 0, y: -50, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 50, scale: 0.5 }}
@@ -126,13 +123,13 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
                   <Button
                     onClick={closeModal}
                     variant="base"
-                    className="w-24 bg-blue-600 border border-neutral-300 dark:border-neutral-800 dark:hover:bg-transparent"
+                    className="w-24 bg-blue-600 hover:bg-blue-700 border border-neutral-300 dark:border-neutral-800"
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-1 bg-blue-600 border w-28 border-neutral-300 dark:border-neutral-800 dark:hover:bg-transparent"
+                    className="inline-flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 border w-28 border-neutral-300 dark:border-neutral-800"
                     variant="base"
                     disabled={loading}
                   >

@@ -10,6 +10,7 @@ interface UserUrl {
 
 interface UseSlugsProps {
   filteredSlugs: UserUrl[];
+  setFilteredSlugs?: React.Dispatch<React.SetStateAction<UserUrl[]>>;
   handleSearch: (value: string) => void;
 }
 

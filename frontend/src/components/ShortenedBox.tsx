@@ -11,9 +11,6 @@ export const Links = () => {
   const { user, isLoading } = useAuth()
   const { handleSearch } = useSlugs()
 
-  const createLink = 'Create link'
-  const createNewSlug = 'Create new slug'
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center w-full h-8">
@@ -37,7 +34,7 @@ export const Links = () => {
         >
           <div className="flex flex-col items-start justify-between w-full gap-8 mb-8 lg:gap-0 lg:flex-row">
             <InputSearch onSearch={handleSearch} />
-            <CreateSlugModal children={createLink} />
+            <CreateSlugModal />
           </div>
 
           {
@@ -50,10 +47,6 @@ export const Links = () => {
                     alt="empty box"
                   />
                   <p className="mt-2 mb-4 opacity-50">No links shortened, yet..</p>
-                </div>
-
-                <div>
-                  <CreateSlugModal children={createNewSlug} />
                 </div>
               </div>
             ) : (
