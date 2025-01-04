@@ -1,5 +1,4 @@
 import { BACKEND_URL } from "../constants"
-import { toast } from "sonner"
 
 export const createSlug = async (url: string, slug: string, description: string) => {
   try {
@@ -46,7 +45,6 @@ export const deleteSlug = async (slug: string) => {
   catch (error) {
     console.error(error)
 
-    toast.error(`Error deleting slug: ${error}`)
     throw error
   }
 }
