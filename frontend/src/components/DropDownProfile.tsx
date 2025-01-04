@@ -32,14 +32,8 @@ export const DropDownProfile = () => {
   const handleSignOut = async () => {
 
     try {
-      await toast.promise(
-        signout(),
-        {
-          loading: "Signing out...",
-          success: "Signed out",
-          error: "Error signing out",
-        }
-      )
+      await signout();
+      toast.success("Signed out successfully");
     }
 
     catch (error) {
