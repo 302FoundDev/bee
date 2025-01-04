@@ -36,12 +36,15 @@ export const CreateSlugModal = () => {
         closeModal();
 
         showConfetti();
-
       }
-    } catch (error) {
+    }
+
+    catch (error) {
       toast.error(`Failed to create slug: ${error}`);
       console.error(error);
-    } finally {
+    }
+
+    finally {
       setLoading(false);
     }
   };
