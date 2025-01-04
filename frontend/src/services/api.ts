@@ -26,9 +26,13 @@ export const createSlug = async (url: string, slug: string, description: string)
 
 export const deleteSlug = async (slug: string) => {
   try {
-    const response = await fetch(`${BACKEND_URL}/urls/delete-slug/${slug}`, {
+    const response = await fetch(`${BACKEND_URL}/urls/delete-slug/`, {
       method: 'DELETE',
       credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ slug })
     })
 
     if (response.ok) {
