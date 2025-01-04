@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, X, GitBranchPlus } from "lucide-react";
-import confetti from "canvas-confetti";
 import Loading from "./Loading";
 import { Button } from "../components/ui/Button";
 import { createSlug } from "../services/api";
 import { toast } from "sonner";
+import { showConfetti } from "./ui/confetti";
 
 
 export const CreateSlugModal = () => {
@@ -17,6 +17,8 @@ export const CreateSlugModal = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
+
     const form = event.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -26,8 +28,6 @@ export const CreateSlugModal = () => {
 
     const newSlug = slug || Math.random().toString(36).substring(7);
 
-    setLoading(true);
-
     try {
       const response = await createSlug(url, newSlug, description);
 
@@ -35,11 +35,7 @@ export const CreateSlugModal = () => {
         toast.success("Slug created successfully");
         closeModal();
 
-        confetti({
-          particleCount: 150,
-          spread: 70,
-          origin: { x: 0.5, y: 0.6 },
-        });
+        showConfetti();
 
       }
     } catch (error) {
