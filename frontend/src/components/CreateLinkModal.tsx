@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, X, GitBranchPlus } from "lucide-react";
-import Confetti from "react-confetti-boom";
+import confetti from "canvas-confetti";
 import Loading from "./Loading";
 import { Button } from "../components/ui/Button";
 import { createSlug } from "../services/api";
@@ -14,7 +14,6 @@ interface CreateSlugModalProps {
 export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -35,28 +34,22 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
 
       if (response) {
         toast.success("Slug created successfully");
-        setShowConfetti(true);
-
         closeModal();
+
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { x: 0.5, y: 0.6 },
+        });
       }
     } catch (error) {
       toast.error(`Failed to create slug: ${error}`);
       console.error(error);
     } finally {
       setLoading(false);
-      setShowConfetti(false);
     }
   };
 
-  if (showConfetti) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-        <Confetti
-          colors={["#f44336", "#2196f3", "#4caf50", "#ffeb3b"]}
-        />
-      </div>
-    );
-  }
 
   return (
     <section className="flex flex-col items-center">
@@ -78,10 +71,10 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
               className="fixed inset-0 z-10 bg-neutral-900/50 dark:bg-neutral-950/80"
               role="dialog"
               aria-modal="true"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.1, ease: "linear" }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
               onClick={closeModal}
             />
 
