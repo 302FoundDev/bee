@@ -21,13 +21,15 @@ export const CreateSlugModal = () => {
     const formData = new FormData(form);
 
     const url = formData.get("url") as string;
-    const slug = formData.get("slug") as string;
+    const slug = formData.get("slug") as string | undefined;
     const description = formData.get("description") as string;
+
+    const newSlug = slug || Math.random().toString(36).substring(7);
 
     setLoading(true);
 
     try {
-      const response = await createSlug(url, slug, description);
+      const response = await createSlug(url, newSlug, description);
 
       if (response) {
         toast.success("Slug created successfully");
@@ -47,7 +49,6 @@ export const CreateSlugModal = () => {
       setLoading(false);
     }
   };
-
 
   return (
     <section className="flex flex-col items-center">
