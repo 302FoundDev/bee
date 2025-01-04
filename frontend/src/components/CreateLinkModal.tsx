@@ -37,9 +37,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
         toast.success("Slug created successfully");
         setShowConfetti(true);
 
-        setTimeout(() => {
-          closeModal();
-        }, 1000);
+        closeModal();
       }
     } catch (error) {
       toast.error(`Failed to create slug: ${error}`);

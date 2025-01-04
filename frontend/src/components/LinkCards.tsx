@@ -32,9 +32,6 @@ export const LinkCards = () => {
 
   const handleDelete = async () => {
     if (!slugToDelete) return;
-
-    console.log(`Deleting slug: ${slugToDelete}`);
-
     setIsDeleting(true);
 
     try {
