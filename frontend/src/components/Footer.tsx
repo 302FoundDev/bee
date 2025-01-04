@@ -1,5 +1,3 @@
-import { AtSign } from "lucide-react"
-
 export const Footer = () => {
 
   return (
@@ -9,12 +7,12 @@ export const Footer = () => {
           © 2024 302foundev. Almost all rights reserved
         </p>
         <a
-          href="https://bluesky.com/302foundev"
+          href="https://bsky.app/profile/302foundev.es"
           target="_blank"
           rel="noreferrer"
           className="transition ease-linear hover:opacity-90"
         >
-          <span className="text-md text-muted-foreground flex items-center justify-center"><AtSign className="size-4" />blueSky</span>
+          <span className="text-md text-muted-foreground flex items-center justify-center text-sky-500">Bluesky Social</span>
         </a>
       </div>
     </footer>

@@ -41,6 +41,7 @@ export const CreateSlugModal: React.FC<CreateSlugModalProps> = ({ children }) =>
           spread: 70,
           origin: { x: 0.5, y: 0.6 },
         });
+
       }
     } catch (error) {
       toast.error(`Failed to create slug: ${error}`);
