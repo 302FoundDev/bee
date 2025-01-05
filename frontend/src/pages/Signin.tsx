@@ -64,7 +64,7 @@ export const Signin = () => {
           to="/"
           className="flex items-center mb-6 text-3xl font-semibold transition ease-linear text-neutral-900 hover:opacity-70 dark:text-neutral-100"
         >
-          <Sparkles className="size-12" />
+          <Sparkles className="size-10" />
         </Link>
         <div className="w-full bg-transparent border rounded-xl shadow lg:w-[600px] md:w-[600px] border-neutral-200 dark:border-neutral-800">
           <div className="p-4 space-y-4 lg:p-8 md:space-y-6">

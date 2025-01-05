@@ -1,4 +1,4 @@
-import { Github, Bug, Sparkles } from "lucide-react"
+import { Github, Bug } from "lucide-react"
 import { DropDownProfile } from "./DropDownProfile"
 import { ToggleTheme } from "./ToggleTheme"
 import { Link } from "react-router-dom"
@@ -15,7 +15,6 @@ export const Header = () => {
               className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:opacity-70"
             >
               <div className="flex items-center gap-3">
-                <Sparkles className="hidden lg:flex md:flex" />
                 <span className="flex text-2xl font-semibold">Bee</span>
               </div>
               <span className="text-sm px-2.5 font-semibold bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-lg">beta</span>
