@@ -12,6 +12,7 @@ interface UseSlugsProps {
   filteredSlugs: UserUrl[];
   setFilteredSlugs?: React.Dispatch<React.SetStateAction<UserUrl[]>>;
   handleSearch: (value: string) => void;
+  removeSlug: (value: string) => void;
 }
 
 export const useSlugs = (): UseSlugsProps => {
@@ -33,8 +34,15 @@ export const useSlugs = (): UseSlugsProps => {
     setFilteredSlugs(filtered || []);
   };
 
+  const removeSlug = (slug: string) => {
+    setFilteredSlugs((prevSlugs) =>
+      prevSlugs.filter((item) => item.slug !== slug)
+    );
+  };
+
   return {
     filteredSlugs,
     handleSearch,
+    removeSlug
   };
 };

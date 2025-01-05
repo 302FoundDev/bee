@@ -14,7 +14,7 @@ export const LinkCards = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [slugToDelete, setSlugToDelete] = useState<string | null>(null)
 
-  const { filteredSlugs } = useSlugs();
+  const { filteredSlugs, removeSlug } = useSlugs();
 
   const handleCopy = (slug: string) => {
     navigator.clipboard
@@ -36,11 +36,10 @@ export const LinkCards = () => {
     setIsDeleting(true);
 
     try {
-      const deleteData = await deleteSlug(slugToDelete);
+      await deleteSlug(slugToDelete);
+      toast.success("Slug deleted successfully");
 
-      if (deleteData) {
-        toast.success("Slug deleted successfully");
-      }
+      removeSlug(slugToDelete)
     }
 
     catch (error) {
