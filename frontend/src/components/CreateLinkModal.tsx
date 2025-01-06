@@ -98,6 +98,7 @@ export const CreateSlugModal = () => {
                         type="text"
                         placeholder="https://x.com"
                         className="px-4 py-2 mt-1 bg-transparent border rounded-md dark:placeholder:text-neutral-400 border-neutral-300 dark:border-neutral-800"
+                        required
                       />
                     </label>
                     <label className="flex flex-col text-[15px] mb-6 dark:text-gray-200">
@@ -121,7 +122,7 @@ export const CreateSlugModal = () => {
                       <Button
                         onClick={closeModal}
                         variant="base"
-                        className="w-24 bg-blue-600 hover:bg-blue-700 border border-neutral-300 dark:border-neutral-800"
+                        className="w-24 bg-blue-600 hover:bg-blue-700 border border-neutral-300 text-neutral-50 dark:border-neutral-800"
                       >
                         Cancel
                       </Button>
@@ -134,12 +135,12 @@ export const CreateSlugModal = () => {
                         {loading ? (
                           <div className="flex items-center justify-center gap-1.5">
                             <Loading />
-                            <span className="text-">Creating...</span>
+                            <span>Creating...</span>
                           </div>
                         ) : (
                           <>
-                            <Rocket className="size-5" />
-                            <span className="">Create</span>
+                            <Rocket />
+                            <span>Create</span>
                           </>
                         )}
                       </Button>

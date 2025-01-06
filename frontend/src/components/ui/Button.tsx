@@ -31,7 +31,7 @@ export const Button = ({
     exotic: 'bg-indigo-700 hover:bg-indigo-800',
     transparent: 'bg-transparent border border-zinc-500 hover:bg-neutral-800',
     gradient: 'font-medium text-neutral-100 from-indigo-600 via-pink-600 to-purple-600 bg-gradient-to-r',
-    base: 'rounded-md w-full px-4 py-1.5 text-neutral-100 hover:text-neutral-800 dark:hover:text-neutral-100',
+    base: 'rounded-md w-full px-4 py-1.5 text-neutral-100',
     ghost: "hover:bg-accent hover:text-accent-foreground",
     link: "text-primary underline-offset-4 hover:underline"
   }
