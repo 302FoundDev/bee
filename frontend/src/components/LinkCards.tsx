@@ -57,7 +57,7 @@ export const LinkCards = () => {
   return (
     <section className="grid w-full grid-cols-1 gap-5 mx-auto sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {filteredSlugs.length > 0 ? (
-        filteredSlugs.map(({ id, url, slug, description }) => (
+        filteredSlugs.reverse().map(({ id, url, slug, description }) => (
           <div
             key={id}
             className="w-full max-w-lg p-4 mx-auto border rounded-lg shadow border-neutral-200 dark:border-neutral-800"
