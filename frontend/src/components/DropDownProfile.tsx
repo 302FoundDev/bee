@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 
 export const DropDownProfile = () => {
-  const { signout, user } = useAuth();
+  const { signout, user, isLoading } = useAuth();
   const [isDropOpen, setIsDropOpen] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,6 @@ export const DropDownProfile = () => {
 
 
   const handleSignOut = async () => {
-
     try {
       await signout();
       toast.success("Signed out successfully");
@@ -38,7 +37,6 @@ export const DropDownProfile = () => {
     catch (error) {
       console.error("Error while signing out:", error);
     }
-
   };
 
   const menuItemStyle =
@@ -68,7 +66,11 @@ export const DropDownProfile = () => {
       {user ? (
         <div className="relative flex">
           <button className="relative z-10" onClick={openDrop}>
-            <UserCircle className="size-7" />
+            {isLoading ? (
+              <div className="w-7 h-7 border-4 border-t-transparent text-neutral-50 rounded-full animate-spin" />
+            ) : (
+              <UserCircle className="size-7" />
+            )}
           </button>
 
           {isDropOpen && (

@@ -46,10 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
-      if (user) {
-        setIsLoading(false)
-        return
-      }
+      setIsLoading(true)
 
       try {
         const response = await fetch(`${BACKEND_URL}/users/profile`, {
@@ -65,7 +62,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         else {
           setUser(null)
         }
-
       }
 
       catch (error) {

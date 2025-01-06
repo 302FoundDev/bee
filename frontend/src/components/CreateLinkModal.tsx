@@ -134,12 +134,12 @@ export const CreateSlugModal = () => {
                         {loading ? (
                           <div className="flex items-center justify-center gap-1.5">
                             <Loading />
-                            Create
+                            <span className="text-">Creating...</span>
                           </div>
                         ) : (
                           <>
                             <Rocket className="size-5" />
-                            Create
+                            <span className="">Create</span>
                           </>
                         )}
                       </Button>

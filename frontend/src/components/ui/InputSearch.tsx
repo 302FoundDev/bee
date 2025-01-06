@@ -28,4 +28,3 @@ export const InputSearch = ({ placeholder = "Search slug", onSearch }: InputSear
     </div>
   )
 }
-
