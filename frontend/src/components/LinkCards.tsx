@@ -32,6 +32,7 @@ export const LinkCards = () => {
 
   const handleDelete = async () => {
     if (!selectedSlug) return;
+
     setIsDeleting(true);
 
     try {
