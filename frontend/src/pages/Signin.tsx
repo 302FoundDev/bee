@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext"
-import { Link } from "react-router-dom"
+import { Link, useLocation, } from "react-router-dom"
 import { Button } from "../components/ui/Button"
 import { motion } from "framer-motion"
 import { toast, Toaster } from "sonner"
@@ -9,6 +9,8 @@ import { useState } from "react"
 export const Signin = () => {
   const { signin } = useAuth()
   const [isSigningIn, setIsSigningIn] = useState(false)
+
+  const location = useLocation()
 
   interface SigninFields {
     email: string;
@@ -28,6 +30,7 @@ export const Signin = () => {
 
     if (!fields.email || !fields.password) {
       toast.error("Please fill in all fields");
+
       setIsSigningIn(false)
       return;
     }
@@ -36,7 +39,8 @@ export const Signin = () => {
       await signin(fields)
       toast.success(`Welcome back! 🎉`)
 
-      window.location.href = "/dashboard"
+      const redirectTo = location.state?.from || "/dashboard";
+      window.location.replace(redirectTo)
     }
 
     catch (error) {
