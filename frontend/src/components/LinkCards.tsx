@@ -9,10 +9,9 @@ import { deleteSlug } from "../services/api";
 
 
 export const LinkCards = () => {
-  const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
+  const [selectedSlug, SetSelectedSlug] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [slugToDelete, setSlugToDelete] = useState<string | null>(null)
 
   const { filteredSlugs, removeSlug } = useSlugs();
 
@@ -20,10 +19,10 @@ export const LinkCards = () => {
     navigator.clipboard
       .writeText(slug)
       .then(() => {
-        setCopiedSlug(slug);
+        SetSelectedSlug(slug);
         toast.success("Copied to clipboard");
 
-        setTimeout(() => setCopiedSlug(null), 2000);
+        setTimeout(() => SetSelectedSlug(null), 2000);
       })
       .catch((err) => {
         console.error("Error copying to clipboard:", err);
@@ -32,14 +31,14 @@ export const LinkCards = () => {
   };
 
   const handleDelete = async () => {
-    if (!slugToDelete) return;
+    if (!selectedSlug) return;
     setIsDeleting(true);
 
     try {
-      await deleteSlug(slugToDelete);
+      await deleteSlug(selectedSlug);
       toast.success("Slug deleted successfully");
 
-      removeSlug(slugToDelete)
+      removeSlug(selectedSlug)
     }
 
     catch (error) {
@@ -50,7 +49,7 @@ export const LinkCards = () => {
     finally {
       setIsDeleting(false);
       setIsConfirmingDelete(false);
-      setSlugToDelete(null);
+      SetSelectedSlug(null);
     }
   };
 
@@ -73,7 +72,7 @@ export const LinkCards = () => {
                     variant="ghost"
                     size="icon"
                   >
-                    {copiedSlug === `${FRONTEND_URL}/${slug}` ? (
+                    {selectedSlug === `${FRONTEND_URL}/${slug}` ? (
                       <Check className="w-4 h-4 text-green-500" />
                     ) : (
                       <Copy className="w-4 h-4" />
@@ -86,7 +85,7 @@ export const LinkCards = () => {
                     variant="ghost"
                     size="icon"
                     onClick={() => {
-                      setSlugToDelete(slug);
+                      SetSelectedSlug(slug);
                       setIsConfirmingDelete(true);
                     }}
                   >
