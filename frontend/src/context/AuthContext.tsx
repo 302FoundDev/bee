@@ -63,12 +63,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       catch (error) {
+        setIsLoading(false)
         console.error('Error fetching user:', error);
         setUser(null)
       }
 
       finally {
-        setIsLoading(false)
+        setIsLoading( )
       }
     }
 
@@ -76,8 +77,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const signin = async (credentials: SigninCredentials) => {
-    setIsLoading(true)
-
     try {
       const response = await fetch(`${BACKEND_URL}/auth/login`, {
         method: 'POST',

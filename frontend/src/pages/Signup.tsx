@@ -9,7 +9,7 @@ import { toast } from "sonner"
 import { LoaderIcon, Sparkles } from "lucide-react"
 
 
-export const Signup = () => {
+export const SignUp = () => {
   const { user, signup } = useAuth()
   const [isSigningUp, setIsSigningUp] = useState(false)
 

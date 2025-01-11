@@ -1,14 +1,15 @@
 import { Route, Routes } from "react-router-dom"
 import { Header } from "./components/Header"
 import { Hero } from "./pages/Hero"
-import { Signin } from "./pages/Signin"
-import { Signup } from "./pages/Signup"
+import { SignIn } from "./pages/signin"
+import { SignUp } from "./pages/signup"
 import { Footer } from "./components/Footer"
 import { NotFound } from "./pages/404/NotFound"
 import { DashboardLayout } from "./dashboard/DashboardLayout"
-import { Links } from "./components/ShortenedBox"
+import { BoxLinks } from "./components/BoxLinks"
 import { UserProfileUpdate } from "./components/ProfileData"
-import { ProtectedRoute } from "./middleware/routes"
+import { ProtectedRoutes } from "./middleware/protectedRoutes"
+import { UnauthenticatedRoute } from "./middleware/unauthenticatedRoutes"
 
 const App = () => {
   return (
@@ -22,13 +23,16 @@ const App = () => {
           {/* Public routes */}
           <Route path="/" element={<Hero />} />
 
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
+          {/* UnauthenticatedRoutes (signin/signup) */}
+          <Route element={<UnauthenticatedRoute />}>
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
 
           {/* Protected routes with shared layout */}
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="dashboard" element={<DashboardLayout />}>
-              <Route index element={<Links />} />
+              <Route index element={<BoxLinks />} />
               <Route path="settings" element={<UserProfileUpdate />} />
             </Route>
           </Route>
