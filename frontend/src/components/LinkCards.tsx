@@ -1,57 +1,25 @@
 import { FRONTEND_URL } from "../constants";
 import { Copy, Trash2, ExternalLink, Check } from "lucide-react";
 import { IconButton } from "./ui/IconButton";
-import { toast } from "sonner";
 import { useState } from "react";
-import { useSlugs } from "./UseSlugs";
+import { useSlugs } from "../hooks/useSearchSlugs";
 import { ConfirmingDeleteModal } from "./ConfirmingDeleteModal";
-import { deleteSlug } from "../services/api";
-
+import { useCopy } from "../hooks/useCopySlug";
+import { useDeleteSlug } from "../hooks/useDeleteSlug";
 
 export const LinkCards = () => {
-  const [selectedSlug, SetSelectedSlug] = useState<string | null>(null);
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
-  const { filteredSlugs, removeSlug } = useSlugs();
+  const { filteredSlugs } = useSlugs();
+  const { copyToClipboard } = useCopy();
+  const { isDeleting, handleDelete } = useDeleteSlug();
 
-  const handleCopy = (slug: string) => {
-    navigator.clipboard
-      .writeText(slug)
-      .then(() => {
-        SetSelectedSlug(slug);
-        toast.success("Copied to clipboard");
-
-        setTimeout(() => SetSelectedSlug(null), 2000);
-      })
-      .catch((err) => {
-        console.error("Error copying to clipboard:", err);
-        toast.error("Error copying to clipboard");
-      });
-  };
-
-  const handleDelete = async () => {
-    if (!selectedSlug) return;
-
-    setIsDeleting(true);
-
-    try {
-      await deleteSlug(selectedSlug);
-      toast.success("Slug deleted successfully");
-
-      removeSlug(selectedSlug)
-    }
-
-    catch (error) {
-      console.error(`Error deleting slug: ${error}`);
-      toast.error(`Failed to delete slug`);
-    }
-
-    finally {
-      setIsDeleting(false);
+  const confirmDelete = () => {
+    handleDelete(selectedSlug, () => {
       setIsConfirmingDelete(false);
-      SetSelectedSlug(null);
-    }
+      setSelectedSlug(null);
+    });
   };
 
   return (
@@ -68,7 +36,9 @@ export const LinkCards = () => {
 
                 <div className="flex items-center ml-2 space-x-2">
                   <IconButton
-                    onClick={() => handleCopy(`${FRONTEND_URL}/${slug}`)}
+                    onClick={() =>
+                      copyToClipboard(`${FRONTEND_URL}/${slug}`, setSelectedSlug)
+                    }
                     className="p-2 transition-all ease-linear rounded-md dark:bg-neutral-700 dark:hover:bg-neutral-300 dark:hover:text-neutral-950"
                     variant="ghost"
                     size="icon"
@@ -86,7 +56,7 @@ export const LinkCards = () => {
                     variant="ghost"
                     size="icon"
                     onClick={() => {
-                      SetSelectedSlug(slug);
+                      setSelectedSlug(slug);
                       setIsConfirmingDelete(true);
                     }}
                   >
@@ -128,9 +98,8 @@ export const LinkCards = () => {
               isDeleting={isDeleting}
               isOpen={isConfirmingDelete}
               onClose={() => setIsConfirmingDelete(false)}
-              handleDelete={handleDelete}
+              handleDelete={confirmDelete}
             />
-
           </div>
         ))
       ) : (

@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext"
 import { LinkCards } from "./LinkCards"
 import { InputSearch } from "./ui/InputSearch"
 import { Toaster } from "sonner"
-import { useSlugs } from "./UseSlugs"
+import { useSlugs } from "../hooks/useSearchSlugs"
 import Loading from "./Loading"
 
 export const Links = () => {
