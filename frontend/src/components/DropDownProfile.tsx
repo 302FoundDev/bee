@@ -36,9 +36,6 @@ export const DropDownProfile = () => {
     }
   };
 
-  const menuItemStyle =
-    "flex gap-1.5 items-center cursor-default px-1 py-2 text-sm font-semibold rounded text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-slate-800";
-
   const dropdownVariants = {
     hidden: {
       opacity: 0,
@@ -60,7 +57,6 @@ export const DropDownProfile = () => {
 
   return (
     <>
-      {/* Muestra un spinner o loading mientras isLoading es true */}
       {isLoading ? (
         <div className="flex items-center justify-center w-7 h-7 border-4 border-t-transparent border-neutral-100 rounded-full animate-spin" />
       ) : (
@@ -102,7 +98,7 @@ export const DropDownProfile = () => {
                       key={link.reference}
                       to={link.to}
                       onClick={closeDrop}
-                      className={`${menuItemStyle}`}
+                      className="flex gap-1.5 items-center cursor-default px-1 py-2 text-sm font-semibold rounded text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-slate-800"
                     >
                       {link.icon} {link.reference}
                     </Link>
@@ -110,7 +106,7 @@ export const DropDownProfile = () => {
 
                   <button
                     onClick={handleSignOut}
-                    className={`${menuItemStyle} w-full mb-4`}
+                    className="flex gap-1.5 items-center cursor-default px-1 py-2 text-sm font-semibold rounded text-neutral-900 dark:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-slate-800"
                     type="button"
                   >
                     <LogOut /> Sign out
